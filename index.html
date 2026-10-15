@@ -4,284 +4,223 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Mengen Aşçılık | Gastronomi Akademisi</title>
+<title>Mengen Aşçılık</title>
 <style>
-:root{--bg:#090d14;--surf:rgba(22,31,48,.88);--bdr:rgba(255,255,255,.1);--gold:#d97706;--gold2:#f59e0b;--grn:#10b981;--red:#ef4444;--txt:#f8fafc;--mut:#94a3b8}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;user-select:none;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
-body{background:radial-gradient(circle at 50% 0%,#172236 0%,#090d14 75%);color:var(--txt);height:100dvh;width:100vw;overflow:hidden;display:flex;justify-content:center}
-#app{width:100%;max-width:480px;height:100dvh;display:flex;flex-direction:column;padding:env(safe-area-inset-top,12px) 14px env(safe-area-inset-bottom,12px)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-@keyframes flame{0%,100%{box-shadow:0 0 10px rgba(245,158,11,.2);border-color:var(--gold)}50%{box-shadow:0 0 20px rgba(245,158,11,.55);border-color:#fbbf24}}
-.hdr{background:var(--surf);backdrop-filter:blur(10px);border:1px solid var(--bdr);border-radius:14px;padding:10px 14px;margin-bottom:10px;display:flex;flex-direction:column;gap:7px}
-.h-top{display:flex;justify-content:space-between;align-items:center}
-.prof{display:flex;align-items:center;gap:10px}
-.emb{width:34px;height:34px;border-radius:9px;background:rgba(217,119,6,.2);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--gold2);font-size:14px}
-.rmeta h2{font-size:12px;text-transform:uppercase;letter-spacing:.4px}.rmeta p{font-size:11px;color:var(--gold2);font-weight:600}
-.hud-r{display:flex;align-items:center;gap:8px}
-.pill{background:#090d14;border:1px solid var(--bdr);padding:4px 9px;border-radius:8px;font-size:11px;font-weight:700;color:var(--gold2)}
-.dots{display:flex;gap:4px}.dot{width:9px;height:9px;border-radius:50%;background:var(--gold2);box-shadow:0 0 6px var(--gold2);transition:.3s}.dot.lost{background:#334155;box-shadow:none;transform:scale(.75)}
-.xptrk{width:100%;height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}.xpfil{height:100%;background:linear-gradient(90deg,var(--gold),#fbbf24);width:0%;transition:width .4s ease}
-.scr{display:none;flex-direction:column;flex:1;overflow:hidden;gap:10px}.scr.active{display:flex;animation:fadeUp .25s ease-out}
-.hero{background:linear-gradient(135deg,rgba(217,119,6,.18),var(--surf));border:1px solid rgba(245,158,11,.35);border-radius:15px;padding:14px}
-.htag{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--gold2);margin-bottom:3px}
-.hero h1{font-size:19px;font-weight:800;margin-bottom:3px}.hero p{font-size:11.5px;color:var(--mut);line-height:1.35}
-.sstrip{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);text-align:center}
-.sstrip small{display:block;font-size:9.5px;color:var(--mut);text-transform:uppercase}.sstrip b{font-size:13px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;overflow-y:auto;padding-bottom:6px}
-.scard{background:var(--surf);border:1px solid var(--bdr);border-radius:12px;padding:11px;color:var(--txt);text-align:left;cursor:pointer;transition:transform .12s}
-.scard:active{transform:scale(.97)}.scard.full{grid-column:span 2;background:linear-gradient(90deg,rgba(217,119,6,.22),var(--surf));border-color:var(--gold2)}
-.scode{font-size:9.5px;font-weight:800;color:var(--gold2);background:rgba(245,158,11,.12);padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:5px}
-.scard h3{font-size:12.5px;margin-bottom:2px}.scard p{font-size:10.5px;color:var(--mut);line-height:1.25}
-.gnav{display:flex;justify-content:space-between;align-items:center;font-size:12px}
-.abtn{background:rgba(255,255,255,.06);border:1px solid var(--bdr);color:var(--mut);border-radius:7px;padding:4px 9px;font-size:11px;font-weight:600;cursor:pointer}
-.spk{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.4);color:var(--gold2);padding:3px 8px;border-radius:6px;font-weight:700;font-size:11px}
-.spk.hot{animation:flame 1.5s infinite;background:rgba(239,68,68,.2);color:#fca5a5}
-.ttrk{width:100%;height:5px;background:rgba(255,255,255,.07);border-radius:9px;overflow:hidden}.tfil{height:100%;width:100%;background:linear-gradient(90deg,var(--grn),var(--gold2));transition:width .1s linear}
-.qbox{background:var(--surf);border:1px solid var(--bdr);border-radius:15px;padding:15px;min-height:108px;display:flex;flex-direction:column;justify-content:center;animation:fadeUp .22s ease-out}
-.qbox.hot{animation:flame 2s infinite}
-.qtag{font-size:10px;font-weight:700;letter-spacing:.7px;color:var(--gold2);margin-bottom:5px;text-transform:uppercase}
-.qtxt{font-size:14px;font-weight:600;line-height:1.42}
+:root{--bg:#0f141c;--card:#18202c;--bdr:#2a364b;--gold:#f59e0b;--red:#ef4444;--grn:#10b981;--txt:#f8fafc;--mut:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;user-select:none;font-family:-apple-system,sans-serif}
+body{background:#0f141c;color:var(--txt);height:100dvh;width:100vw;overflow:hidden;display:flex;justify-content:center}
+#app{width:100%;max-width:460px;height:100dvh;display:flex;flex-direction:column;padding:12px 14px}
+.top{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:10px;margin-bottom:10px}
+.r-info h2{font-size:13px;color:var(--gold)}.r-info p{font-size:11px;color:var(--mut)}
+.pill{background:var(--bg);border:1px solid var(--bdr);padding:5px 10px;border-radius:10px;font-size:13px;font-weight:700}
+.scr{display:none;flex-direction:column;flex:1;overflow-y:auto;gap:10px}.scr.active{display:flex}
+.hero{background:linear-gradient(135deg,#292112,var(--card));border:1px solid var(--gold);border-radius:14px;padding:14px;text-align:center}
+.hero h1{font-size:20px;color:var(--gold);margin-bottom:4px}.hero p{font-size:12px;color:var(--mut)}
+.h-bar{display:flex;justify-content:space-around;margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;overflow-y:auto}
+.c-btn{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:12px;color:var(--txt);text-align:left;cursor:pointer}
+.c-btn.full{grid-column:span 2;border-color:var(--gold)}
+.c-btn b{display:block;font-size:13px;margin:4px 0 2px}.c-btn small{font-size:10px;color:var(--mut)}
+.t-wrap{width:100%;height:6px;background:#1e293b;border-radius:9px;overflow:hidden}
+.t-bar{height:100%;width:100%;background:linear-gradient(90deg,var(--grn),var(--gold));transition:width .2s linear}
+.meta{display:flex;justify-content:space-between;font-size:12px;color:var(--mut)}
+.q-card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:14px;min-height:105px;display:flex;flex-direction:column;justify-content:center}
+.badge{align-self:flex-start;font-size:10px;font-weight:700;padding:2px 6px;border-radius:5px;background:#1e3a8a;color:#93c5fd;margin-bottom:6px}
+.q-txt{font-size:14px;font-weight:600;line-height:1.4}
 .opts{display:flex;flex-direction:column;gap:8px;flex:1;justify-content:center}
-.obtn{background:var(--surf);border:1.5px solid var(--bdr);border-radius:11px;padding:11px 13px;color:var(--txt);font-size:12.5px;font-weight:500;text-align:left;display:flex;align-items:center;gap:9px;cursor:pointer;opacity:0;animation:slideIn .2s ease-out forwards}
-.obtn:nth-child(2){animation-delay:.05s}.obtn:nth-child(3){animation-delay:.1s}.obtn:nth-child(4){animation-delay:.15s}
-.obtn:active{transform:scale(.98)}
-.okey{width:23px;height:23px;border-radius:6px;background:#090d14;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold2);flex-shrink:0}
-.obtn.ok{background:rgba(16,185,129,.18);border-color:var(--grn);color:#d1fae5}.obtn.ok .okey{background:var(--grn);color:#000}
-.obtn.no{background:rgba(239,68,68,.18);border-color:var(--red);color:#fee2e2;animation:shake .35s ease}.obtn.no .okey{background:var(--red);color:#fff}
-.obtn.elim{opacity:.2!important;pointer-events:none}.obtn.glow{border-color:var(--gold2);box-shadow:0 0 14px rgba(245,158,11,.35)}
-.exp{background:#111827;border:1px solid var(--gold);border-radius:11px;padding:9px 11px;font-size:11.5px;line-height:1.35;display:none;align-items:center;justify-content:space-between;gap:8px;animation:fadeUp .2s ease-out}.exp.show{display:flex}
-.nbtn{background:var(--gold2);color:#000;border:none;border-radius:8px;padding:8px 13px;font-weight:800;font-size:11.5px;flex-shrink:0;cursor:pointer}
-.jrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:auto}
-.jbtn{background:#161f30;border:1px solid var(--bdr);border-radius:10px;padding:8px 4px;color:var(--txt);font-size:11px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}.jbtn:disabled{opacity:.3;pointer-events:none}.jbtn small{font-size:9.5px;color:var(--gold2)}
-.mbtn{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:11px;padding:13px;font-size:14px;font-weight:800;width:100%;cursor:pointer;margin-top:10px}
+.o-btn{background:var(--card);border:1.5px solid var(--bdr);border-radius:11px;padding:12px;color:var(--txt);font-size:13px;text-align:left;cursor:pointer}
+.o-btn.ok{background:rgba(16,185,129,.2);border-color:var(--grn)}.o-btn.no{background:rgba(239,68,68,.2);border-color:var(--red)}.o-btn.dis{opacity:.3;pointer-events:none}
+.fb{background:var(--bg);border:1px solid var(--gold);border-radius:11px;padding:10px;font-size:12px;display:none;align-items:center;justify-content:space-between;gap:8px}.fb.show{display:flex}
+.n-btn,.p-btn{background:var(--gold);color:#000;border:none;border-radius:8px;padding:8px 12px;font-weight:700;cursor:pointer}
+.p-btn{width:100%;padding:14px;font-size:15px;margin-top:10px}
+.j-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:auto}
+.j-btn{background:#131a24;border:1px solid var(--bdr);border-radius:10px;padding:8px 4px;color:var(--txt);font-size:11px;cursor:pointer}.j-btn:disabled{opacity:.35}
 </style>
 </head>
 <body>
 <div id="app">
-  <header class="hdr">
-    <div class="h-top">
-      <div class="prof"><div class="emb" id="rBdg">I</div><div class="rmeta"><h2 id="rNam">Stajyer Çırak</h2><p id="xpTxt">0 / 120 XP</p></div></div>
-      <div class="hud-r"><div class="pill">KREDİ: <span id="gVal">60</span></div><div class="dots" id="lBox"></div></div>
+  <div class="top">
+    <div class="r-info"><h2 id="rTitle">🔪 Stajyer Çırak</h2><p id="rProg">0 XP</p></div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <div class="pill">🥄 <span id="goldTxt">50</span></div>
+      <div id="livesTxt">🍽️🍽️🍽️</div>
     </div>
-    <div class="xptrk"><div class="xpfil" id="xpBar"></div></div>
-  </header>
-
-  <section class="scr active" id="menuScr">
+  </div>
+  <div class="scr active" id="menuScr">
     <div class="hero">
-      <div class="htag">MENGEN GASTRONOMİ AKADEMİSİ</div>
-      <h1>Şefin İstasyonu: Ustalık Sınavı</h1>
-      <p>Klasik Fransız & Türk mutfak teknikleri, reçete denetimi ve canlı mutfak matematiği.</p>
-      <div class="sstrip">
-        <div><small>Rekor Skor</small><b id="bVal">0</b></div>
-        <div><small>Başarılı Tabak</small><b id="sVal">0</b></div>
-        <div><small>Müfredat</small><b>8 İstasyon</b></div>
-      </div>
+      <h1>👨‍🍳 MENGEN AŞÇILIK</h1>
+      <p>Gastronomi Müfredatı, Klasik Teknikler & Canlı Maliyet Sınavı</p>
+      <div class="h-bar"><span>Rekor: <b id="bestTxt">0</b></span><span>Doğru: <b id="solvTxt">0</b></span></div>
     </div>
-    <div class="grid" id="stGrid"></div>
-  </section>
-
-  <section class="scr" id="gameScr">
-    <div class="gnav">
-      <button class="abtn" onclick="abort()">✕ Çıkış</button>
-      <span class="spk" id="strTxt">Seri: x1</span>
-      <b id="scrTxt">0 Puan</b>
+    <div class="grid" id="catGrid"></div>
+  </div>
+  <div class="scr" id="gameScr">
+    <div class="t-wrap"><div class="t-bar" id="tBar"></div></div>
+    <div class="meta"><span id="catLbl">Kategori</span><span id="cmbTxt">Seri: x1</span><span id="scrTxt">Skor: 0</span></div>
+    <div class="q-card"><span class="badge" id="qBdg">Sınav</span><div class="q-txt" id="qTxt"></div></div>
+    <div class="opts" id="optList"></div>
+    <div class="fb" id="fbBox"><span id="fbTxt"></span><button class="n-btn" id="nxtBtn">GEÇ ▶</button></div>
+    <div class="j-bar">
+      <button class="j-btn" id="j50" onclick="j50()">🔪 %50 (15🥄)</button>
+      <button class="j-btn" id="jTm" onclick="jTm()">⏱️ +12sn (10🥄)</button>
+      <button class="j-btn" id="jCh" onclick="jCh()">👨‍🍳 İpucu (25🥄)</button>
     </div>
-    <div class="ttrk"><div class="tfil" id="tBar"></div></div>
-    <div class="qbox" id="qCard"><div class="qtag" id="qTag">İSTASYON</div><div class="qtxt" id="qTxt"></div></div>
-    <div class="opts" id="optWrap"></div>
-    <div class="exp" id="expBar"><div id="expTxt"></div><button class="nbtn" id="nxtBtn">DEVAM ▶</button></div>
-    <div class="jrow">
-      <button class="jbtn" id="j50" onclick="u50()"><span>%50 Eleme</span><small>15 Kredi</small></button>
-      <button class="jbtn" id="jTm" onclick="uTm()"><span>+12 Sn Süre</span><small>10 Kredi</small></button>
-      <button class="jbtn" id="jHn" onclick="uHn()"><span>Şefin Notu</span><small>25 Kredi</small></button>
+  </div>
+  <div class="scr" id="overScr">
+    <div class="hero" style="margin:auto 0;padding:24px">
+      <h2>SERVİS SONA ERDİ</h2>
+      <h1 style="font-size:36px;margin:12px 0" id="finScr">0</h1>
+      <p id="finRnk"></p>
+      <button class="p-btn" onclick="startCat(st.cat)">TEKRAR OYNA</button>
+      <button class="p-btn" style="background:#2a364b;color:#fff" onclick="show('menuScr')">ANA MENÜ</button>
     </div>
-  </section>
-
-  <section class="scr" id="overScr">
-    <div class="hero" style="margin:auto 0;text-align:center;padding:22px">
-      <div class="htag">SERVİS RAPORU</div>
-      <h2>Vardiya Tamamlandı</h2>
-      <div style="font-size:40px;font-weight:800;color:var(--gold2);margin:10px 0" id="fScr">0</div>
-      <p id="fRnk" style="margin-bottom:10px"></p>
-      <button class="mbtn" onclick="start(st.cat)">YENİDEN SERVİSE ÇIK</button>
-      <button class="mbtn" style="background:transparent;color:var(--mut);border:1px solid var(--bdr)" onclick="show('menuScr')">İSTASYON SEÇİMİ</button>
-    </div>
-  </section>
+  </div>
 </div>
 <script>
-const actx=new (window.AudioContext||window.webkitAudioContext)();
-function sfx(f,t,d){try{if(actx.state==="suspended")actx.resume();let o=actx.createOscillator(),g=actx.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.08,actx.currentTime);g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+d);o.connect(g);g.connect(actx.destination);o.start();o.stop(actx.currentTime+d)}catch(e){}}
-const okSfx=()=>{sfx(523,"sine",.1);setTimeout(()=>sfx(659,"sine",.18),80)},noSfx=()=>{sfx(196,"triangle",.2);setTimeout(()=>sfx(146,"sawtooth",.25),100)},tapSfx=()=>sfx(440,"sine",.04);
-
-const RANKS=[[0,"I","Stajyer Çırak"],[120,"II","Commis (Komi)"],[300,"III","Demi Chef"],[600,"IV","Chef de Partie"],[1000,"V","Sous Chef"],[1600,"VI","Executive Chef"],[2500,"VII","Mengen Başaşçısı"]];
-const STS=[
-  ["all","GENEL SINAV","Kapsamlı Akademik Sınav","Tüm istasyonlar, reçete denetimi ve canlı maliyet",1],
-  ["kesim","BÖLÜM 01","Kesim & Mise en Place","Standart bıçak kesim ölçüleri ve aromatikler"],
-  ["sos","BÖLÜM 02","Anne Soslar & Çorbalar","5 temel anne sos, türevler ve bağlayıcılar"],
-  ["pisirme","BÖLÜM 03","Pişirme & Isı Tekniği","Kuru, nemli ve karma ısı transfer yöntemleri"],
-  ["et","BÖLÜM 04","Et, Karkas & Balık","Merkez sıcaklıkları, anatomik kesimler ve balıklar"],
-  ["pasta","BÖLÜM 05","Patisserie & Fırıncılık","Temel hamurlar, merengler, çikolata ve kremalar"],
-  ["mengen","BÖLÜM 06","Mengen & Osmanlı","Yöresel Bolu-Mengen mirası ve saray mutfağı"],
-  ["hijyen","BÖLÜM 07","Hijyen & HACCP","Tahta renk kodları, kritik sıcaklıklar ve depolama"],
-  ["maliyet","BÖLÜM 08","Mutfak Matematiği","Canlı fire, verim, menü fiyatlama ve hidratasyon"]
+const RANKS=[[0,"🔪 Stajyer"],[100,"🥣 Komi"],[280,"🍳 Demi Chef"],[550,"🔥 Chef de Partie"],[950,"🎖️ Sous Chef"],[1500,"👑 Executive Chef"],[2400,"🏆 Mengen Başaşçısı"]];
+const CATS=[
+  ["all","🎓 Genel Akademik Sınav","Tüm müfredat + Canlı Maliyet",1],
+  ["kesim","🔪 Kesim & Mise en Place","Brunoise, Jülyen, Mirepoix"],
+  ["sos","🥣 Soslar & Çorbalar","5 Anne sos, türevler, bağlayıcılar"],
+  ["pisirme","🔥 Pişirme & Isı","Poşe, Breze, Maillard, Sous-vide"],
+  ["et","🥩 Et, Karkas & Balık","İç dereceler, Bonfile, Carpaccio"],
+  ["mengen","🥘 Mengen & Osmanlı","Yöresel reçeteler ve saray mutfağı"],
+  ["hijyen","🧼 Hijyen & HACCP","Tahta renkleri, dereceler, FEFO"],
+  ["maliyet","📊 Maliyet & Pastacılık","Canlı Fire/Cost hesabı ve hamurlar"]
 ];
-const DB=[
-  ["kesim","Brunoise","1x1x1 mm ile 3x3x3 mm ölçülerinde çok ince küp sebze doğrama standardı","Julienne şeritlerin küp doğranmasıyla elde edilir."],
-  ["kesim","Julienne","1-2 mm kalınlığında, 3-5 cm uzunluğunda kibrit çöpü formunda şerit kesim","Sebzelerde homojen pişme süresi sağlar."],
-  ["kesim","Batonnet","6x6 mm kalınlığında ve 4-5 cm uzunluğunda standart çubuk kesim tekniği","Macédoine (orta küp) kesimin ön aşamasıdır."],
-  ["kesim","Macédoine","5x5x5 mm ölçülerinde orta boy küp doğrama standardı","Batonnet çubukların küp doğranmasıyla oluşur."],
-  ["kesim","Chiffonade","Yapraklı sebze ve taze otların rulo yapılıp ince şeritler halinde kıyılması","Kararmayı önlemek için keskin bıçakla uygulanır."],
-  ["kesim","Mirepoix","2 kısım soğan, 1 kısım havuç ve 1 kısım kereviz sapından oluşan aromatik karışım","Stok ve temel sosların lezzet omurgasıdır."],
-  ["kesim","Tourné (Turne)","Sebzelerin 7 eşit yüzeyli ve 5 cm boyunda fıçı formunda yontulması","Klasik Fransız dekoratif kesim tekniğidir."],
-  ["kesim","Concasse","Domatesin kabuğu soyulup çekirdekleri çıkarıldıktan sonra küp doğranması","Öncesinde kaynar suda 10 sn Blanching uygulanır."],
-  ["sos","Béchamel Sos","Beyaz Roux üzerine sıcak süt eklenip muskatla aromalandırılan anne sos","Mornay sosun ve gratenlerin temelidir."],
-  ["sos","Velouté Sos","Sarışın Roux üzerine beyaz fond (tavuk, balık, dana) eklenerek yapılan anne sos","Béchamel'den farkı süt yerine stok kullanılmasıdır."],
-  ["sos","Espagnole Sos","Kahverengi Roux, kahverengi kemik fondu, Mirepoix ve domates püreli anne sos","Demi-Glace sosun başlangıç tabanıdır."],
-  ["sos","Hollandaise Sos","Yumurta sarısı, saf tereyağı ve limonla benmaride yapılan sıcak emülsiyon sos","65°C üzerinde yumurta pişip sos kesilebilir."],
-  ["sos","Béarnaise Sos","Hollandaise tabanına tarhun otu, arpacık soğanı ve sirke çektirmesi eklenen sos","Izgara bonfile ve Chateaubriand klasiğidir."],
-  ["sos","Mornay Sos","Béchamel sos içerisine Gruyère ve Parmesan peyniri eklenerek hazırlanan sos","Sebze ve deniz ürünü gratenlerde kullanılır."],
-  ["sos","Liaison (Liyezon)","Çorba ve sosları bağlamak için kullanılan yumurta sarısı ve krema karışımı","Temperlenerek eklenir ve tekrar kaynatılmaz."],
-  ["sos","Consommé","Yumurta akı, yağsız kıyma ve Mirepoix (Raft) ile berraklaştırılmış kristal çorba","Protein pıhtısı tüm tortuları hapseder."],
-  ["pisirme","Poşe (Poaching)","71°C - 82°C aralığında sıvıyı kaynatmadan kabarcıksız hassas pişirme","Yumurta ve narin balık filetoları için idealdir."],
-  ["pisirme","Breze (Braising)","Büyük parça etlerin önce mühürlenip sonra az sıvıyla kapalı kapta ağır pişirilmesi","Bağ dokusunu jelatine dönüştüren karma yöntemdir."],
-  ["pisirme","Maillard Reaksiyonu","140°C üzerinde amino asitler ve şekerlerin tepkimeye girerek kabuk oluşturması","Mühürlenen etin lezzetini veren kimyasal tepkimedir."],
-  ["pisirme","Blanching","Sebzeleri kaynar suda kısa süre haşlayıp hemen buzlu suya (şoklama) çıkarma","Enzimleri durdurur ve yeşil rengi korur."],
-  ["pisirme","Sous-Vide","Gıdaların vakumlu poşette sabit düşük ısılı su banyosunda pişirilmesi","Nem kaybını minimuma indirir."],
-  ["pisirme","Confit (Konfi)","Etin kendi yağında düşük sıcaklıkta (85°C-90°C) uzun süre yavaşça pişirilmesi","Ördek budu için klasikleşmiş yöntemdir."],
-  ["pisirme","Deglaze","Soteleme sonrası tava dibindeki karamelize kalıntıları sıvı ile çözüp sos yapma","Pan sosların temel lezzet katmanıdır."],
-  ["et","55°C - 57°C (Medium Rare)","Orta-Az (Medium Rare) pişmiş dana bonfilenin ideal merkez sıcaklığı","Merkezi sıcak kırmızı ve maksimum sululuktadır."],
-  ["et","50°C - 52°C (Rare)","Az pişmiş (Rare) kırmızı etin ulaşması gereken merkez sıcaklığı","Dışı mühürlü, merkezi serin kırmızıdır."],
-  ["et","60°C - 63°C (Medium)","Orta pişmiş (Medium) kırmızı etin ulaşması gereken merkez sıcaklığı","Merkezi pembe halkaya sahiptir."],
-  ["et","Chateaubriand","Dana bonfilenin (Tenderloin) en kalın orta merkezinden çıkarılan değerli kesim","Genellikle 2 kişilik porsiyonlanır."],
-  ["et","Dana Carpaccio","Çiğ dana bonfilenin yaprak dilimlenip zeytinyağı, roka ve parmesanla soğuk sunumu","Venedik'te Cipriani tarafından yaratılmıştır."],
-  ["et","Osso Buco","Dana incik kemiğinin enine dilimlenip sebze ve stokla Breze edildiği İtalyan klasiği","Yanında Gremolata ile servis edilir."],
-  ["et","Yassı Balıklar (Kalkan/Dil)","Gözleri tek tarafta bulunan ve 2 yerine 4 adet fileto çıkarılan balık grubu","Yuvarlak balıklardan 2, yassılardan 4 fileto çıkar."],
-  ["pasta","Pâte à Choux (Şu Hamuru)","Su, tereyağı, un ve yumurtayla önce ocakta kavrulup sonra fırınlanan profiterol hamuru","Maya içermez; su buharı basıncıyla kabarır."],
-  ["pasta","İtalyan Merengi","118°C-121°C kaynar şeker şurubunun çırpılan yumurta akına akıtılmasıyla yapılan mereng","En stabil ve güvenli mereng türüdür."],
-  ["pasta","Crème Anglaise","Süt, krema, şeker ve yumurta sarısının 82°C-84°C'ye pişirildiği akışkan İngiliz kreması","Dondurma ve Bavarois tabanıdır."],
-  ["pasta","Temperleme (31°C-32°C)","Bitter çikolatanın Beta kristallerini düzenleyerek parlaklık ve kırılganlık verme işlemi","Yağ çiçeklenmesini (fat bloom) önler."],
-  ["pasta","Ganache (Ganaj)","Sıcak krema ve çikolatanın emülsiyon haline getirilmesiyle yapılan dolgu/kaplama","Oranına göre trüf veya sıvama için kullanılır."],
-  ["pasta","Pâte Brisée","Soğuk tereyağı, un, tuz ve az soğuk suyla (şekersiz) hazırlanan kırılgan kiş/tart hamuru","Gluten gelişmemesi için az yoğrulur."],
-  ["pasta","Frangipane","Badem kreması (Crème d'Amande) ve pastacı kremasının birleşimiyle yapılan dolgu","Tart ve klasik Fransız ürünlerinde kullanılır."],
-  ["mengen","Mengen Pilavı","Kuşbaşı et, mantar, ceviz içi, domates ve dereotu ile pişirilen Mengen imza pilavı","Ceviz ve dereotu karakteristik imzasıdır."],
-  ["mengen","Kaldırık Dolması","Bolu-Mengen ormanlarında yetişen hodan yaprağının mısır unlu harçla sarılması","Sarımsaklı yoğurtla servis edilir."],
-  ["mengen","Helvahane","Osmanlı saray mutfağında tatlı, reçel, şerbet ve macunların üretildiği bölüm","Helvacıbaşı yönetimindeydi."],
-  ["mengen","Kuşhane Mutfağı","Osmanlı sarayında yalnızca Padişah için yemek pişirilen özel güvenlikli mutfak","Kuşhaneci başı yönetirdi."],
-  ["mengen","Mutancana","Kuzu etinin kuru erik, kayısı, incir, badem ve balla pişirildiği Fatih dönemi yemeği","Et ve kuru meyve uyumunun zirvesidir."],
-  ["mengen","Keşli Cevizli Erişte","Mengen yöresinde ev eriştesinin kurutulmuş süzme yoğurt (Keş) ve cevizle sunumu","Keş rendelenerek kullanılır."],
-  ["mengen","Hünkarbeğendi","Közlenmiş patlıcanlı ve kaşarlı Béchamel yatağında kuzu tas kebabı","Osmanlı ve Fransız tekniği sentezidir."],
-  ["hijyen","Sarı Doğrama Tahtası","HACCP standartlarında Çiğ Kümes Hayvanları için kullanılan doğrama tahtası rengi","Salmonella çapraz bulaşmasını engeller."],
-  ["hijyen","Mavi Doğrama Tahtası","HACCP standartlarında Çiğ Balık ve Deniz Ürünleri için kullanılan tahta rengi","Deniz ürünü alerjen geçişini önler."],
-  ["hijyen","Kahverengi Doğrama Tahtası","HACCP standartlarında Pişmiş Etler ve Şarküteri ürünleri için kullanılan tahta rengi","Kırmızı tahta yalnızca çiğ kırmızı et içindir."],
-  ["hijyen","Yeşil Doğrama Tahtası","HACCP standartlarında Yıkanmış Sebze ve Meyveler için kullanılan tahta rengi","Toprak kaynaklı bulaşmaları önler."],
-  ["hijyen","4°C - 60°C (Tehlikeli Bölge)","Gıda güvenliğinde bakterilerin her 20 dakikada ikiye katlandığı sıcaklık aralığı","Gıdalar bu aralıkta 2 saatten fazla tutulamaz."],
-  ["hijyen","FEFO Prensibi","Depo yönetiminde 'Son Kullanma Tarihi Önce Olan Önce Çıkar' kuralı","Gıda güvenliğinde FIFO'dan önceliklidir."],
-  ["hijyen","Minimum 74°C","Kümes hayvanlarının güvenli tüketim için ulaşması gereken minimum merkez sıcaklığı","Tavuk eti asla az pişmiş sunulmaz."]
-];
-const AUD=[
-  ["sos","Orijinal Fettuccine Alfredo",["Tereyağı","Parmigiano-Reggiano","Makarna Haşlama Suyu"],"Sarımsak, Tavuk Suyu ve Un","Geleneksel Alfredo sadece tereyağı ve parmesan emülsiyonudur."],
-  ["mengen","Geleneksel Mengen Pilavı",["Ceviz İçi","Kültür/Dağ Mantarı","Dereotu ve Kuşbaşı Et"],"Krema, Köri ve Mısır","Mengen pilavında krema veya köri yer almaz."],
-  ["et","Klasik Dana Carpaccio",["Çiğ Dana Bonfile","Sızma Zeytinyağı ve Limon","Parmesan ve Roka"],"Soya Sosu ve Pişmiş Antrikot","Carpaccio çiğ bonfileden hazırlanır."],
-  ["pasta","Pâte à Choux (Profiterol Hamuru)",["Su ve Tereyağı","Un ve Tuz","Yumurta"],"Yaş Maya ve Kabartma Tozu","Şu hamuru maya ile değil su buharıyla kabarır."]
+const KB=[
+  ["kesim","Brunoise","1-3 mm ölçülerinde çok ince küp doğrama tekniği","Jülyen kesilmiş sebzelerin küp doğranmasıyla elde edilir."],
+  ["kesim","Julienne (Jülyen)","1-2 mm kalınlığında, 3-5 cm uzunluğunda kibrit çöpü kesim","Eşit pişme süresi sağlar."],
+  ["kesim","Batonnet","6x6x40 mm ölçülerinde çubuk kesim tekniği","Orta boy küp kesimin ön aşamasıdır."],
+  ["kesim","Macédoine","5x5x5 mm ölçülerinde orta boy küp doğrama","Batonnet kesimin küp doğranmasıyla oluşur."],
+  ["kesim","Chiffonade","Yapraklı sebzelerin ve otların rulo yapılıp ince kıyılması","Keskin bıçakla kararmadan uygulanır."],
+  ["kesim","Mirepoix","2 kısım soğan, 1 kısım havuç, 1 kısım kereviz sapı karışımı","Stok ve sosların temel aromatik tabanıdır."],
+  ["kesim","Tourné","Sebzelerin 7 eşit yüzeyli fıçı formunda yontulması","Klasik Fransız dekoratif kesimidir."],
+  ["kesim","Concasse","Domatesin kabuğu soyulup çekirdeği çıkarılarak küp doğranması","Öncesinde kaynar suda Blanching yapılır."],
+  ["sos","Béchamel Sos","Beyaz Roux ve süt ile yapılan, muskatla tatlandırılan anne sos","Mornay sosun ve lazanyanın temelidir."],
+  ["sos","Velouté Sos","Sarışın Roux üzerine beyaz fond (stok) eklenerek yapılan anne sos","Béchamel'den farkı süt yerine stok kullanılmasıdır."],
+  ["sos","Espagnole Sos","Kahverengi Roux, kahverengi fond, Mirepoix ve domates püreli anne sos","Demi-Glace sosun temelidir."],
+  ["sos","Hollandaise Sos","Yumurta sarısı, saf tereyağı ve limonla benmaride yapılan emülsiyon sos","65°C üzerinde kesilebilir."],
+  ["sos","Béarnaise Sos","Hollandaise tabanına tarhun otu ve arpacık soğanı eklenen türev sos","Izgara bonfile ile sunulur."],
+  ["sos","Mornay Sos","Béchamel sosa Gruyère ve Parmesan peyniri eklenen türev sos","Gratenlerde sıkça kullanılır."],
+  ["sos","Liaison","Çorba ve sosları bağlamak için kullanılan yumurta sarısı ve krema karışımı","Temperlenerek eklenir, kaynatılmaz."],
+  ["sos","Consommé","Yumurta akı ve kıyma (Raft) ile berraklaştırılmış kristal çorba","Tortusuz berrak çorbadır."],
+  ["pisirme","Poşe (Poaching)","71°C - 82°C arasında kabarcık çıkarmadan hassas sıvıda pişirme","Yumurta ve balık için idealdir."],
+  ["pisirme","Breze (Braising)","Büyük etlerin önce mühürlenip sonra az sıvıyla kapalı kapta pişirilmesi","Karma pişirme yöntemidir."],
+  ["pisirme","Maillard Reaksiyonu","140°C üzerinde protein ve şekerlerin esmerleşip lezzet oluşturması","Mühürlemenin temel kimyasıdır."],
+  ["pisirme","Blanching","Sebzeleri kaynar suda kısa haşlayıp buzlu suya (şoklama) çıkarma","Renk ve dokuyu korur."],
+  ["pisirme","Sous-Vide","Vakumlu poşette sabit düşük ısıdaki su banyosunda pişirme","Nem kaybını önler."],
+  ["pisirme","Deglaze","Tava dibindeki karamelize parçaları sıvı ile çözüp sos yapma","Pan sosların temelidir."],
+  ["et","55°C - 57°C","Medium Rare (Orta-Az) dana bonfilenin merkez sıcaklığı","Merkezi sıcak kırmızıdır."],
+  ["et","50°C - 52°C","Rare (Az pişmiş) dana etinin merkez sıcaklığı","İçi serin kırmızıdır."],
+  ["et","Chateaubriand","Dana bonfilenin en kalın orta kısmından çıkarılan özel kesim","Bonfile (Tenderloin) merkezidir."],
+  ["et","Dana Carpaccio","Çiğ dana bonfilenin yaprak dilimlenip zeytinyağı ve parmesanla sunumu","Soğuk başlangıç klasiğidir."],
+  ["et","Yassı Balıklar","Gözleri tek tarafta olan ve 4 adet fileto çıkarılan balık grubu (Kalkan/Dil)","Yuvarlak balıklardan 2, yassılardan 4 fileto çıkar."],
+  ["mengen","Mengen Pilavı","Et, mantar, ceviz içi ve dereotu ile pişirilen Mengen imza pilavı","Ceviz ve dereotu karakteristik özelliğidir."],
+  ["mengen","Kaldırık Dolması","Bolu yöresinde hodan/kaldırık yaprağının mısır unlu içle sarılması","Sarımsaklı yoğurtla sunulur."],
+  ["mengen","Helvahane","Osmanlı saray mutfağında tatlı, reçel ve şerbetlerin yapıldığı bölüm","Helvacıbaşı yönetirdi."],
+  ["mengen","Mutancana","Kuzu etinin kuru meyveler, badem ve balla pişirildiği saray yemeği","Fatih dönemi klasiğidir."],
+  ["mengen","Keşli Cevizli Erişte","Mengen yöresinde kurutulmuş süzme yoğurt (Keş) ve cevizli erişte","Yöresel imza tabağıdır."],
+  ["hijyen","Sarı Doğrama Tahtası","HACCP standartlarında Çiğ Kümes Hayvanları için kullanılan tahta","Salmonella riskini önler."],
+  ["hijyen","Mavi Doğrama Tahtası","HACCP standartlarında Çiğ Balık ve Deniz Ürünleri tahtası","Çapraz bulaşmayı önler."],
+  ["hijyen","Kahverengi Tahta","HACCP standartlarında Pişmiş Etler için kullanılan doğrama tahtası","Kırmızı tahta çiğ kırmızı et içindir."],
+  ["hijyen","4°C - 60°C","Bakterilerin en hızlı çoğaldığı Tehlikeli Sıcaklık Bölgesi (Danger Zone)","Max 2 saat bekletilebilir."],
+  ["hijyen","FEFO Kuralı","Son Kullanma Tarihi Önce Olan Önce Çıkar depo kuralı","Gıda güvenliğinde esastır."],
+  ["hijyen","74°C","Kümes hayvanlarının ulaşması gereken minimum güvenli iç sıcaklık","Tavuk eti az pişmiş sunulmaz."],
+  ["pasta","Pâte à Choux","Önce tencerede sonra fırında iki kez pişirilen profiterol/ekler hamuru","Su buharıyla kabarır."],
+  ["pasta","İtalyan Merengi","121°C kaynar şeker şurubuyla yapılan en dayanıklı mereng","Makaron ve muslarda kullanılır."],
+  ["pasta","Temperleme","Çikolatanın kakao yağı kristallerini düzenleyip parlaklık ve çıtırlık verme","Bitterde 31-32°C'dir."]
 ];
 
-let st={xp:+localStorage.mg_xp||0,gold:+localStorage.mg_gold||60,best:+localStorage.mg_best||0,solv:+localStorage.mg_solved||0,cat:"all",scr:0,cmb:1,liv:3,deck:[],q:null,tm:null,left:22,lock:0};
+let st={xp:+localStorage.mxp||0,gold:+localStorage.mgold||50,best:+localStorage.mbest||0,solv:+localStorage.msolv||0,cat:"all",scr:0,cmb:1,liv:3,deck:[],q:null,tm:null,left:20};
 const $=id=>document.getElementById(id),shuf=a=>[...a].sort(()=>Math.random()-.5);
 
-function hud(){
-  localStorage.mg_xp=st.xp;localStorage.mg_gold=st.gold;localStorage.mg_best=st.best;localStorage.mg_solved=st.solv;
-  let cur=RANKS[0],nxt=RANKS[1];
-  for(let i=0;i<RANKS.length;i++)if(st.xp>=RANKS[i][0]){cur=RANKS[i];nxt=RANKS[i+1]||[st.xp+500];}
-  $("rBdg").textContent=cur[1];$("rNam").textContent=cur[2];$("xpTxt").textContent=`${st.xp} / ${nxt[0]} XP`;
-  $("xpBar").style.width=Math.min(100,Math.round((st.xp-cur[0])/(nxt[0]-cur[0])*100))+"%";
-  $("gVal").textContent=st.gold;$("bVal").textContent=st.best;$("sVal").textContent=st.solv;
-  $("lBox").innerHTML=[0,1,2].map(i=>`<div class="dot ${i>=st.liv?'lost':''}"></div>`).join("");
+function save(){
+  localStorage.mxp=st.xp;localStorage.mgold=st.gold;localStorage.mbest=st.best;localStorage.msolv=st.solv;
+  let r=RANKS.slice().reverse().find(x=>st.xp>=x[0])||RANKS[0];
+  $("rTitle").textContent=r[1];$("rProg").textContent=st.xp+" XP";
+  $("goldTxt").textContent=st.gold;$("livesTxt").textContent="🍽️".repeat(st.liv)+"🖤".repeat(3-st.liv);
+  $("bestTxt").textContent=st.best;$("solvTxt").textContent=st.solv;
 }
+function show(id){document.querySelectorAll(".scr").forEach(s=>s.classList.remove("active"));$(id).classList.add("active");save();}
 
 function genMath(){
-  let m=Math.floor(Math.random()*4);
-  if(m===0){
-    let it=["Atlantik Somonu","Dana Bonfile","Kalkan Balığı"][Math.floor(Math.random()*3)],b=[5,8,10,20][Math.floor(Math.random()*4)],f=[15,20,25,30][Math.floor(Math.random()*4)],n=b*(100-f)/100;
-    return {t:"CANLI FİRE HESABI",q:`Brüt ${b} kg ${it} işlenince ${n} kg net ürün kalıyor. Fire oranı yüzde kaçtır?`,a:`%${f}`,o:shuf([`%${f}`,`%${f+5}`,`%${f-5}`,`%${f+10}`]),n:`Fire = (${b}-${n})/${b} = %${f}. Verim %${100-f}'dir.`};
-  }else if(m===1){
-    let c=[60,75,90,120][Math.floor(Math.random()*4)],fc=[25,30][Math.floor(Math.random()*2)],p=Math.round(c/(fc/100));
-    return {t:"MENÜ FİYATLAMA (FOOD COST)",q:`Reçete maliyeti ${c} TL olan tabak için hedef Food Cost %${fc} ise vergisiz satış fiyatı kaç TL olmalıdır?`,a:`${p} TL`,o:shuf([`${p} TL`,`${p+35} TL`,`${p-25} TL`,`${p+60} TL`]),n:`Satış = Maliyet / Food Cost (${c} / 0.${fc} = ${p} TL).`};
-  }else if(m===2){
-    let fl=[1000,2000,3000][Math.floor(Math.random()*3)],h=[60,65,70][Math.floor(Math.random()*3)],w=fl*h/100;
-    return {t:"FIRINCI YÜZDESİ",q:`%${h} hidratasyonlu ekşi maya ekmek reçetesinde ${fl} g un için kaç gram su gerekir?`,a:`${w} g`,o:shuf([`${w} g`,`${w+250} g`,`${w-200} g`,`${fl/2} g`]),n:`Un %100 kabul edilir: ${fl} x %${h} = ${w} g su.`};
+  let items=["Atlantik Somonu","Dana Bonfile","Kalkan Balığı","Karides"],it=items[Math.floor(Math.random()*4)];
+  if(Math.random()<.5){
+    let b=[5,8,10,20][Math.floor(Math.random()*4)],f=[15,20,25,30][Math.floor(Math.random()*4)],n=b*(100-f)/100;
+    return {c:"Mutfak Matematiği",b:"Canlı Fire Hesabı",q:`Brüt ${b} kg ${it} temizlenince ${n} kg net fileto kalıyor. Fire oranı yüzde kaçtır?`,a:`%${f}`,o:shuf([`%${f}`,`%${f+5}`,`%${f-5}`,`%${100-f}`]),i:`Fire = (${b}-${n})/${b} = %${f}.`};
   }else{
-    let g=[40,50,80,100][Math.floor(Math.random()*4)],net=g*.2,brut=net/.8;
-    return {t:"BANKET SATIN ALMA",q:`${g} kişilik bankette kişi başı 200 g net bonfile sunulacaktır. Fire %20 (Verim %80) ise kaç kg brüt et alınmalıdır?`,a:`${brut} kg`,o:shuf([`${brut} kg`,`${net} kg`,`${brut+3} kg`,`${brut-2.5} kg`]),n:`Net ihtiyaç ${net} kg. Brüt = ${net} / 0.80 = ${brut} kg.`};
+    let c=[60,75,90,120][Math.floor(Math.random()*4)],fc=[25,30][Math.floor(Math.random()*2)],p=Math.round(c/(fc/100));
+    return {c:"Maliyet Kontrolü",b:"Menü Fiyatlama",q:`Porsiyon maliyeti ${c} TL olan ${it} için hedef Food Cost %${fc} ise satış fiyatı kaç TL olmalıdır?`,a:`${p} TL`,o:shuf([`${p} TL`,`${p+40} TL`,`${p-30} TL`,`${c*2} TL`]),i:`Satış = Maliyet / Food Cost (${c} / 0.${fc} = ${p} TL).`};
   }
 }
 
 function build(cat){
-  let d=[];
-  if(cat==="maliyet"){for(let i=0;i<20;i++)d.push(genMath());return shuf(d);}
-  let list=cat==="all"?DB:DB.filter(x=>x[0]===cat);
+  let p=[],list=cat==="all"?KB:KB.filter(x=>x[0]===cat||(cat==="maliyet"&&x[0]==="pasta"));
   list.forEach(k=>{
-    let same=DB.filter(x=>x[0]===k[0]&&x[1]!==k[1]);
-    d.push({t:k[0].toUpperCase()+" İSTASYONU",q:`"${k[2]}" olarak tanımlanan profesyonel mutfak terimi/standardı hangisidir?`,a:k[1],o:shuf([k[1],...shuf(same).slice(0,3).map(x=>x[1])]),n:k[3]});
-    d.push({t:k[0].toUpperCase()+" İSTASYONU",q:`Mutfak literatüründe "${k[1]}" kavramının doğru karşılığı hangisidir?`,a:k[2],o:shuf([k[2],...shuf(same).slice(0,3).map(x=>x[2])]),n:k[3]});
+    let oth=KB.filter(x=>x[1]!==k[1]);
+    p.push({c:k[0].toUpperCase(),b:"Terminoloji",q:`"${k[2]}" olarak tanımlanan kavram/standart hangisidir?`,a:k[1],o:shuf([k[1],...shuf(oth).slice(0,3).map(x=>x[1])]),i:k[3]});
+    p.push({c:k[0].toUpperCase(),b:"Standart Bilgisi",q:`"${k[1]}" teriminin profesyonel mutfaktaki karşılığı hangisidir?`,a:k[2],o:shuf([k[2],...shuf(oth).slice(0,3).map(x=>x[2])]),i:k[3]});
   });
-  (cat==="all"?AUD:AUD.filter(a=>a[0]===cat)).forEach(au=>{
-    d.push({t:"REÇETE DENETİMİ",q:`"${au[1]}" reçetesinde aşağıdakilerden hangisi kesinlikle YER ALMAZ?`,a:au[3],o:shuf([au[3],...au[2]]),n:au[4]});
-  });
-  if(cat==="all")for(let i=0;i<10;i++)d.push(genMath());
-  return shuf(d);
+  let mc=cat==="maliyet"?15:(cat==="all"?12:0);
+  for(let i=0;i<mc;i++)p.push(genMath());
+  return shuf(p);
 }
 
-function show(id){document.querySelectorAll(".scr").forEach(s=>s.classList.remove("active"));$(id).classList.add("active");hud();}
-function start(c){clearInterval(st.tm);st.cat=c;st.scr=0;st.cmb=1;st.liv=3;st.deck=build(c);show("gameScr");nextQ();}
-function abort(){tapSfx();clearInterval(st.tm);show("menuScr");}
-function jSync(){$("j50").disabled=st.lock||st.gold<15;$("jTm").disabled=st.lock\vert{}\vert{}st.gold<10;$("jHn").disabled=st.lock||st.gold<25;}
+function startCat(c){
+  clearInterval(st.tm);
+  st.cat=c;st.scr=0;st.cmb=1;st.liv=3;st.deck=build(c);
+  show("gameScr");
+  nextQ();
+}
 
 function nextQ(){
-  clearInterval(st.tm);if(st.liv<=0)return end();if(!st.deck.length)st.deck=build(st.cat);
-  st.lock=0;st.q=st.deck.pop();$("expBar").classList.remove("show");
-  $("strTxt").textContent=st.cmb>=3?`🔥 Ateş Hattı: x${st.cmb}`:`Seri: x${st.cmb}`;
-  $("strTxt").classList.toggle("hot",st.cmb>=3);$("qCard").classList.toggle("hot",st.cmb>=3);
-  $("scrTxt").textContent=st.scr+" Puan";$("qTag").textContent=st.q.t;$("qTxt").textContent=st.q.q;
-  $("optWrap").innerHTML="";
-  ["A","B","C","D"].forEach((k,i)=>{
-    let b=document.createElement("button");b.className="obtn";b.dataset.v=st.q.o[i];
-    b.innerHTML=`<span class="okey">${k}</span><span>${st.q.o[i]}</span>`;
-    b.onclick=()=>ans(b,st.q.o[i]);$("optWrap").appendChild(b);
+  clearInterval(st.tm);
+  if(st.liv<=0)return end();
+  if(!st.deck.length)st.deck=build(st.cat);
+  st.q=st.deck.pop();$("fbBox").classList.remove("show");
+  $("catLbl").textContent=st.q.c;$("qBdg").textContent=st.q.b;
+  $("cmbTxt").textContent="Seri: x"+st.cmb;$("scrTxt").textContent="Skor: "+st.scr;
+  $("qTxt").textContent=st.q.q;$("optList").innerHTML="";
+  st.q.o.forEach(opt=>{
+    let b=document.createElement("button");b.className="o-btn";b.textContent=opt;
+    b.onclick=()=>ans(b,opt);$("optList").appendChild(b);
   });
-  jSync();st.left=22;$("tBar").style.width="100%";
-  st.tm=setInterval(()=>{st.left-=.1;$("tBar").style.width=Math.max(0,st.left/22*100)+"%";if(st.left<=0){clearInterval(st.tm);ans(null,"__TO__");}},100);
+  $("j50").disabled=st.gold<15;$("jTm").disabled=st.gold<10;$("jCh").disabled=st.gold<25;
+  st.left=20;$("tBar").style.width="100%";
+  st.tm=setInterval(()=>{
+    st.left-=.2;
+    let pct=(st.left/20)*100;
+    $("tBar").style.width=(pct>0?pct:0)+"%";
+    if(st.left<=0){clearInterval(st.tm);ans(null,"");}
+  },200);
 }
 
 function ans(btn,val){
-  if(st.lock)return;st.lock=1;clearInterval(st.tm);jSync();
-  document.querySelectorAll(".obtn").forEach(b=>{if(b.dataset.v===st.q.a)b.classList.add("ok");});
+  clearInterval(st.tm);
+  document.querySelectorAll(".o-btn").forEach(b=>{b.onclick=null;if(b.textContent===st.q.a)b.classList.add("ok");});
   if(val===st.q.a){
-    okSfx();let pt=20*st.cmb;st.scr+=pt;st.xp+=15;st.gold+=5;st.cmb=Math.min(5,st.cmb+1);st.solv++;
+    let pt=15*st.cmb;st.scr+=pt;st.xp+=12;st.gold+=5;st.cmb=Math.min(5,st.cmb+1);st.solv++;
     if(st.scr>st.best)st.best=st.scr;
-    $("expTxt").innerHTML=`<b style="color:var(--grn)">✓ Kusursuz Servis (+${pt} Puan)</b><br>${st.q.n}`;
+    $("fbTxt").textContent=`✅ Doğru! (+${pt}) ${st.q.i}`;
   }else{
-    noSfx();if(btn)btn.classList.add("no");st.liv--;st.cmb=1;
-    $("expTxt").innerHTML=`<b style="color:var(--red)">${val==="__TO__"?"⏱ Süre Doldu!":"✕ Hatalı Tabak!"} Doğrusu: ${st.q.a}</b><br>${st.q.n}`;
+    if(btn)btn.classList.add("no");st.liv--;st.cmb=1;
+    $("fbTxt").textContent=`❌ Doğrusu: ${st.q.a}. ${st.q.i}`;
   }
-  hud();$("scrTxt").textContent=st.scr+" Puan";
-  $("nxtBtn").textContent=st.liv<=0?"RAPOR":"SIRADAKİ ▶";
-  $("nxtBtn").onclick=()=>{tapSfx();st.liv<=0?end():nextQ();};
-  $("expBar").classList.add("show");
+  save();$("fbBox").classList.add("show");
+  $("nxtBtn").onclick=()=>st.liv<=0?end():nextQ();
 }
 
-function u50(){if(st.lock||st.gold<15)return;tapSfx();st.gold-=15;hud();shuf([...document.querySelectorAll(".obtn")].filter(b=>b.dataset.v!==st.q.a&&!b.classList.contains("elim"))).slice(0,2).forEach(b=>b.classList.add("elim"));$("j50").disabled=true;}
-function uTm(){if(st.lock||st.gold<10)return;tapSfx();st.gold-=10;hud();st.left=Math.min(22,st.left+12);$("jTm").disabled=true;}
-function uHn(){if(st.lock||st.gold<25)return;tapSfx();st.gold-=25;hud();document.querySelectorAll(".obtn").forEach(b=>{if(b.dataset.v===st.q.a)b.classList.add("glow");});$("jHn").disabled=true;}
-function end(){clearInterval(st.tm);$("fScr").textContent=st.scr+" Puan";$("fRnk").textContent=`Güncel Rütbe: ${$("rNam").textContent} (${st.xp} XP)`;show("overScr");}
+function j50(){if(st.gold<15)return;st.gold-=15;save();shuf([...document.querySelectorAll(".o-btn")].filter(b=>b.textContent!==st.q.a)).slice(0,2).forEach(b=>b.classList.add("dis"));$("j50").disabled=true;}
+function jTm(){if(st.gold<10)return;st.gold-=10;save();st.left=Math.min(20,st.left+12);$("jTm").disabled=true;}
+function jCh(){if(st.gold<25)return;st.gold-=25;save();document.querySelectorAll(".o-btn").forEach(b=>{if(b.textContent===st.q.a)b.style.borderColor="var(--gold)";});$("jCh").disabled=true;}
+function end(){clearInterval(st.tm);$("finScr").textContent=st.scr+" Puan";$("finRnk").textContent="Güncel Rütbe: "+$("rTitle").textContent;show("overScr");}
 
-STS.forEach(s=>{
-  let b=document.createElement("button");b.className="scard"+(s[4]?" full":"");
-  b.innerHTML=`<span class="scode">${s[1]}</span><h3>${s[2]}</h3><p>${s[3]}</p>`;
-  b.onclick=()=>{tapSfx();start(s[0]);};$("stGrid").appendChild(b);
+CATS.forEach(c=>{
+  let b=document.createElement("button");b.className="c-btn"+(c[3]?" full":"");
+  b.innerHTML=`<b>${c[1]}</b><small>${c[2]}</small>`;b.onclick=()=>startCat(c[0]);$("catGrid").appendChild(b);
 });
-hud();
+save();
 </script>
 </body>
 </html>

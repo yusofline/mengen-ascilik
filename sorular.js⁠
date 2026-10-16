@@ -156,3 +156,36 @@ const TF_YENI=[
   ["mengen","Basit kuver genellikle lüks ve alakart servis yapan restoranlarda tercih edilir.","YANLIŞ","Basit kuver içki servisinin olmadığı küçük otel ve tencere yemeği sunan mekanlarda uygulanır."],
   ["mengen","Tatlı çatal ve bıçakları kuver tabağının üst tarafında masaya paralel şekilde yerleştirilir.","DOĞRU","Tatlı takımları tabağın üst kısmına yatay olarak konumlandırılır."]
 ];
+const DB_YENI=[
+  ["servis","Mise en Place (Ön Hazırlık)","Yiyecek-içecek işletmesinin açılışıyla başlayıp kapanışına kadar devam eden genel düzen, temizlik ve hazırlık çalışmaları","Temel amacı servis akışının aksamadan kusursuz yürütülmesidir."],
+  ["servis","Kuver (Set-up)","Restoranda müşterilerin yemek yerken ihtiyaç duydukları malzemelerin bir düzen dahilinde masalara yerleştirilmesi","Avrupa'da 'kuver açmak', Amerikan literatüründe 'set-up' olarak adlandırılır."],
+  ["servis","Kuver Malzemeleri","Molton, masa örtüsü, kapak, peçete, tabaklar, ÇKB (çatal-kaşık-bıçak), bardaklar ve menaj takımından oluşan sofra düzeni","Yemek öğününe ve menüye göre kuverdeki ekipmanlar çeşitlenir."],
+  ["servis","Molton","Masa örtüsünün altına serilen; örtünün kaymasını, tabak sesini önleyen ve dökülen sıvıyı emen kalın kumaş","Kuver açılırken masaya ilk serilen tekstil malzemesidir."],
+  ["servis","Menaj Takımı","Masada konukların kullanımına sunulan tuzluk, biberlik, yağlık-sirkelik gibi baharat ve sos ekipmanları","Tuzluk ve vazo üzerindeki işletme amblemleri kapı girişine bakmalıdır."],
+  ["servis","ÇKB Dizilim ve Kullanım Kuralı","Çatal, kaşık ve bıçakların yemek sırasına göre masaya içeriden dışarıya dizilip dışarıdan içeriye doğru kullanılması","İlk yenecek yemeğin takımı en dışta yer alır."],
+  ["servis","Kuver 2 cm Kuralı","Kuver tabağının masa kenarına, ÇKB'nin tabağa ve ÇKB'lerin kendi aralarındaki mesafesinin 2 cm olması standardı","ÇKB sapları kuver tabağının alt kısmı ile aynı hizada ve masaya 90 derece dik olmalıdır."],
+  ["servis","Kuver Maksimum Takım Sınırı","Kuver tabağının sağında en fazla 4 takım ve 4 bardak; solunda ve yukarısında en fazla 3'er takım bulunması kuralı","Tatlı ÇKB'leri kuver tabağının üst tarafında masa kenarına paralel yerleştirilir."],
+  ["servis","Logo ve Amblem Yönü","Tabak üzerindeki otel logosunun konuğun karşısına, vazo ve tuzluk amblemlerinin ise kapı girişine bakması kuralı","Üniversal bardak veya su bardağı ana yemek bıçağının 2-3 cm karşısına konur."],
+  ["servis","Basit Kuver","İçki servisinin olmadığı, tencere yemekleri ve ızgara/kebap sunan 1-2 yıldızlı otel ve restoranlarda uygulanan kuver","Standart olarak çorba kaşığı, ana yemek çatal-bıçağı ve su bardağı yer alır."],
+  ["servis","Geliştirilmiş Kuver","Lüks ve alakart restoranlarda basit kuvere ordövr (orta boy) çatal-bıçağı ile şarap bardakları eklenerek hazırlanan kuver","Konuk rakı sipariş ederse beyaz şarap bardağı kaldırılıp rakı bardağı konur."],
+  ["servis","Alakart (A'la Carte)","Menü kartında yer alan yemeklerin belirtilen fiyatlardan sipariş üzerine hazırlanıp servis edilmesi usulü","Kelime anlamı Fransızca 'karta göre / kart usulü' demektir."],
+  ["servis","Ziyafet (Banket) Kuveri","4 ve 5 yıldızlı otellerde düğün, balo ve konferans gibi toplu yemeklerde 3 ila 6 sıra menüye göre önceden açılan kuver","Menü önceden belli olduğu için kuver malzemelerinin yerleşimi kolaydır."],
+  ["servis","Standart Reçete (Tarife)","Toplu beslenme servisinde kalite, porsiyon tutarlılığı ve maliyet kontrolü sağlayan doğrulanmış üretim formülü","Tarife standartlaştırma; hazırlık, doğrulama ve yemeğin değerlendirilmesi aşamalarından oluşur."]
+];
+
+const AUD_YENI=[
+  ["servis","Kuver (Sofra Takımı) Malzemeleri",["Molton, Masa Örtüsü ve Kapak","Çatal, Kaşık, Bıçak ve Bardaklar","Peçete ve Menaj Takımı"],"Adisyon Rulosu ve POS Cihazı","Kuver; örtü, peçete, tabak, ÇKB, bardak ve menajdan oluşur."],
+  ["servis","Standart Basit Kuver Düzeni",["Çorba Kaşığı","Ana Yemek Çatalı ve Bıçağı","Su Bardağı"],"Şampanya Kadehi ve İstiridye Çatalı","Basit kuver içkisiz 3 sıra (çorba, ana yemek, tatlı) yemek düzenine göredir."]
+];
+
+const CRISIS_YENI=[
+  ["servis","Geliştirilmiş kuver açılmış alakart bir masada konuk şarap yerine rakı sipariş etti. Ne yapmalısın?","Masadaki beyaz şarap bardağını kaldırıp yerine rakı bardağı yerleştirmek","Su bardağını masadan tamamen almak","Rakıyı şarap kadehinde servis etmek","Masadaki tüm bardakları toplamak","Rakı tercih edildiğinde beyaz şarap bardağı kaldırılarak yerine rakı bardağı konur."],
+  ["servis","Servis yoğunluğunda temiz bardaklar bulaşık makinesinde kaldı ve konuk içecek bekliyor. Ön hazırlık kuralı nedir?","Asla 'Bardaklar makinede, çıkınca getireceğim' denmemeli; servis öncesi yedekli Mise en Place ile bu kriz önlenmelidir","Konuğa makinenin bitmesini beklemesini söylemek","İçeceği çorba kasesinde sunmak","Konuğu başka masaya kaldırmak","Mise en Place eksikliği konuğa yansıtılmaz; ön hazırlık kusursuz planlanmalıdır."]
+];
+
+const TF_YENI=[
+  ["servis","Avrupa'da 'kuver açmak' olarak bilinen işlem Amerikan literatüründe 'set-up' olarak adlandırılır.","DOĞRU","Her iki terim de servis öncesi masa hazırlığını ifade eder."],
+  ["servis","Kuver açarken çatal, kaşık ve bıçaklar masaya dışarıdan içeriye doğru dizilir.","YANLIŞ","ÇKB masaya içeriden dışarıya doğru dizilir, dışarıdan içeriye doğru kullanılır."],
+  ["servis","Kuver tabağının sağında en fazla 4 takım ve en fazla 4 bardak yer almalıdır.","DOĞRU","Solunda ve yukarısında ise en fazla 3'er takım yer alır."],
+  ["servis","Üniversal bardak veya su bardağı, ana yemek çatalının sol alt kısmına yerleştirilir.","YANLIŞ","Su bardağı ana yemek bıçağının 2-3 cm karşısına (sağ üst) yerleştirilir."]
+];

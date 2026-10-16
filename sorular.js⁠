@@ -1,0 +1,158 @@
+const DB=[
+  ["pasta","Pâte à Choux (Şu Hamuru)","Su, tereyağı, un ve yumurtayla önce ocakta kavrulup sonra fırınlanan profiterol/ekler hamuru","Maya içermez; su buharı basıncıyla içi boşalarak kabarır."],
+  ["pasta","İtalyan Merengi","118°C-121°C kaynar şeker şurubunun çırpılan yumurta akına akıtılmasıyla yapılan mereng","Pastacılıkta en stabil, pişmiş ve güvenli mereng türüdür."],
+  ["pasta","Crème Anglaise","Süt, krema, şeker ve yumurta sarısının 82°C-84°C'ye pişirildiği akışkan krema","Dondurma ve Bavarois tabanıdır."],
+  ["pasta","Temperleme (31°C-32°C)","Bitter çikolatanın Beta kristallerini düzenleyerek parlaklık ve kırılganlık verme işlemi","Temperlenmeyen çikolatada yağ çiçeklenmesi (fat bloom) oluşur."],
+  ["pasta","Ganache (Ganaj)","Sıcak krema ve çikolatanın emülsiyon haline getirilmesiyle yapılan dolgu ve kaplama","Çikolata/krema oranına göre trüf veya sıvama için kullanılır."],
+  ["pasta","Pâte Brisée","Soğuk tereyağı, un, tuz ve az soğuk suyla hazırlanan kırılgan kiş ve tart hamuru","Gluten gelişimini önlemek için Sablage tekniğiyle az yoğrulur."],
+  ["pasta","Frangipane","Badem kreması ve pastacı kremasının birleşimiyle yapılan dolgu","Klasik Fransız tartlarında kullanılır."],
+  ["pasta","Crème Pâtissière","Süt, yumurta sarısı, şeker, nişasta ve tereyağı ile kaynatılarak bağlanan temel pastacı kreması","Ekler ve profiterolün ana dolgusudur."],
+  ["pasta","Laminasyon (Tur Verme)","Kruvasan ve milföy hamuruna tereyağı bloğu kapatıp katlayarak yüzlerce ince katman oluşturma","Her tur arasında hamur soğutulur."],
+  ["pasta","Bavarois (Bavyera Kreması)","Crème Anglaise tabanına jelatin ve çırpılmış krema eklenerek kalıpta dondurulan mus tatlısı","Klasik Fransız pastacılığında temel kalıp tatlısıdır."],
+  ["pasta","Pâte Sablée","Yüksek oranlı tereyağı ve pudra şekeriyle kumlandırılarak yapılan tatlı tart hamuru","Kıtır yapısıyla meyveli tartlarda tercih edilir."],
+  ["pasta","Puff Pastry (Milföy)","Yağ ve un katmanlarının yüzlerce kat katlanmasıyla yapılan mayasız hamur","Fırında buharleşen su ile kabarır."],
+  ["pasta","Soufflé (Sufle)","Çırpılmış yumurta akı (mereng) eklenerek fırında kabartılan tatlı veya tuzlu sıcak yiyecek","Hassas ısıda hemen servis edilmelidir."],
+  ["tarih","Kitabü't-Tabih (15. Yüzyıl)","Hekim Şirvani'nin Bağdadi'den çevirip 80'den fazla tarif eklediği bilinen ilk Osmanlı yemek yazması","Orta Asya Türk-Selçuklu çizgisini yansıtır."],
+  ["tarih","Melceü't-Tabbahin (1844)","Mehmet Kamil'in yazdığı, 273 tarifli basılı ilk Türkçe yemek kitabı","Anlamı 'Aşçıların Sığınağı'dır."],
+  ["tarih","Ev Kadını (1883)","Ayşe Fahriye tarafından hanımlara yemek teknikleri ve sofra adabını öğretmek için yazılan 802 tarifli eser","Piruhi ve Çerkez tavuğu gibi tarifleri içerir."],
+  ["tarih","Aşçıbaşı (1900)","Mahmut Nedim bin Tosun'un yazdığı, Doğu Anadolu dahil yöresel Anadolu yemeklerini içeren yemek kitabı","Kelecoş ve büryan gibi detaylar içerir."],
+  ["tarih","Fenn-i Tabahat (1921)","Mehmet Reşat'ın kuzine, terazi ve kıyma makinesi gibi modern mutfak aletlerini tanıttığı bilimsel kitap","Kelime anlamı 'Yemek Pişirme İlmi'dir."],
+  ["tarih","Aşçı Mektebi (1920)","Ahmet Şevket'in İstanbul'un başlıca aşçılarına danışarak yazdığı Fransız tarifli eser","Galantin ve trüflü kaz ciğeri içerir."],
+  ["tarih","Ekrem Muhittin Yeğen","1944'te basılan 'Alaturka ve Alafranga Yemek Kitabı'nın yazarı","Cumhuriyet dönemi mutfak eğitiminde en etkili kaynaktır."],
+  ["tarih","Necip Ertürk","1971'de 'Türk Mutfak Sanatı' kitabını yayınlayan, uluslararası alanda tanınmış ilk Türk usta şef","Fransız tekniklerinin Türk mutfağına adaptasyonunu belgelemiştir."],
+  ["tarih","Kuşluk ve Zevale","Selçuklu mutfak kültüründe sabah-öğle (Kuşluk) ve akşamüstü (Zevale) yenilen iki öğün","Cumhuriyet dönemine kadar günde iki öğün beslenme yaygındı."],
+  ["tarih","Küdenke (Küden) Aşı","Yusuf Has Hacib'in Kutadgu Bilig eserinde geçen geleneksel Türk düğün ziyafeti yemeği","Ölü yemeğine 'Yoğ/Yuğ aşı' denirdi."],
+  ["tarih","Tombak Kaplar","Osmanlı saray mutfağında bakır üzerine altın ve cıva alaşımı uygulanarak altın sarısı görünüm verilen kaplar","16. ve 17. yüzyılda prestij göstergesiydi."],
+  ["tarih","Mast ve Mastgir","Osmanlı saray kayıtlarında yoğurda 'Mast', saray yoğurtçubaşılarına 'Mastgir' denmesi","İnek sütü 'leveni kav' olarak geçer."],
+  ["tarih","Bakırhane ve Kalayhane","Osmanlı saray mutfağında bulaşıkların yıkandığı bölüme Bakırhane denmesi","Padişahın yemeklerini Kuşçubaşılar hazırlardı."],
+  ["tarih","II. Mahmut","Osmanlı'da yemeklerini Avrupa usulü masada çatal-bıçakla yiyen ilk padişah","Aşçısını Avrupa'ya eğitime göndermiştir."],
+  ["tarih","Matbah-ı Amire","Osmanlı sarayında padişah ve saray halkı için yemeklerin pişirildiği ana mutfak kompleksi","Fatih Sultan Mehmet döneminde yapılandırılmıştır."],
+  ["tarih","Enderun Mutfağı","Topkapı Sarayı'nda padişaha özel yemeklerin hazırlandığı ve saray görevlilerinin eğitildiği iç mutfak","Sarayın iç teşkilatına hizmet vermiştir."],
+  ["tarih","Helvahane-i Amire","Sarayda tatlı, reçel, şerbet ve macunların üretildiği, aynı zamanda ilaç hazırlanan birim","Ana mutfaktan bağımsız çalışan ilk ihtisas birimidir."],
+  ["tarih","Çeşnicibaşı","Padişahın yemeklerinden önce zehir olup olmadığını anlamak için tatma görevi yapan yetkili","Sarayın en güvenilir görevlilerinden seçilirdi."],
+  ["mengen","Halantiye Bulamacı","Hitit tabletlerinde sulu sütten yapıldığı belirtilen kraliyet yemeği[span_0](start_span)[span_0](end_span)","Hitit metinlerinde ayrıca 180'e yakın un mamulü adı geçer[span_1](start_span)[span_1](end_span)."],
+  ["mengen","Kurut ve Keş","Selçuklularda yoğurdun kurutulmasıyla yapılan kışlık ürüne Kurut denmesi[span_2](start_span)[span_2](end_span)","Mengen'de Keş hâlâ makarna ve eriştede kullanılır."],
+  ["mengen","Sogut ve Buldum","Selçuklularda ekşi sütten elde edilen peynire 'Sogut', ayrana üzüm konulan yiyeceğe 'Buldum' denmesi[span_3](start_span)[span_3](end_span)","Süt ürünleri terminolojisi çok zengindi."],
+  ["mengen","Kak","Selçuklu ve geleneksel Anadolu mutfağında meyvelerin kurutulmuş hali[span_4](start_span)[span_4](end_span)","Kışın pekmezle hoşaf yapımında kullanılırdı[span_5](start_span)[span_5](end_span)."],
+  ["mengen","Nar Şerbeti","Osmanlı'da misafire ikram edilmesi kibarlık göstergesi olan içecek","Kışın tarçın, yazın koruk şerbeti içilirdi."],
+  ["mengen","Mengen Pilavı","Kuşbaşı et, mantar, ceviz içi, domates ve dereotu ile pişirilen Mengen imza pilavı","Ceviz ve dereotu karakteristik imzasıdır."],
+  ["mengen","Kaldırık Dolması","Bolu-Mengen ormanlarında yetişen hodan yaprağının mısır unlu harçla sarılması","Sarımsaklı yoğurtla servis edilir."],
+  ["mengen","Helvahane","Osmanlı saray mutfağında tatlı, reçel, şerbet ve şifalı macunların üretildiği bölüm","Ana mutfaktan ayrı bağımsız ilk tatlı üretim merkezi sayılır."],
+  ["mengen","Mutancana","Kuzu etinin kuru erik, kayısı, incir, badem ve balla pişirildiği Fatih dönemi saray yemeği","Et ve kuru meyve uyumunun zirvesidir."],
+  ["mengen","Keşli Cevizli Erişte","Mengen yöresinde ev eriştesinin kurutulmuş süzme yoğurt ve tereyağlı cevizle sunumu","Yöresel Bolu-Mengen mutfağının imza tabağıdır."],
+  ["mengen","Hünkarbeğendi","Közlenmiş patlıcanlı ve kaşarlı Béchamel yatağında kuzu tas kebabı","19. yüzyıl Osmanlı ve Fransız tekniği sentezidir."],
+  ["mengen","Bolu Yayla Çorbası","Yoğurt, nane, pirinç ve tereyağı ile hazırlanan geleneksel çorba","Bolu ve Mengen mutfağının baş tacıdır."],
+  ["mengen","Mengen Köftesi","İçerisinde yöresel baharatlar ve ince kıyılmış et barındıran özel köfte çeşidi","Mengen aşçılığının temel el becerilerini yansıtır."],
+  ["kesim","Brunoise","1x1x1 mm ile 3x3x3 mm ölçülerinde çok ince küp sebze doğrama standardı","Julienne şeritlerin küp doğranmasıyla elde edilir."],
+  ["kesim","Julienne","1-2 mm kalınlığında, 3-5 cm uzunluğunda kibrit çöpü formunda şerit kesim","Sebzelerde homojen pişme süresi sağlar."],
+  ["kesim","Batonnet","6x6 mm kalınlığında ve 4-5 cm uzunluğunda standart çubuk kesim tekniği","Macédoine kesimin ön aşamasıdır."],
+  ["kesim","Macédoine","5x5x5 mm ölçülerinde orta boy küp doğrama standardı","Batonnet çubukların küp doğranmasıyla oluşur."],
+  ["kesim","Chiffonade","Yapraklı sebze ve taze otların rulo yapılıp ince şeritler halinde kıyılması","Kararmayı önlemek için keskin bıçakla uygulanır."],
+  ["kesim","Mirepoix","2 kısım soğan, 1 kısım havuç ve 1 kısım kereviz sapından oluşan aromatik karışım","Stok ve temel sosların lezzet omurgasıdır."],
+  ["kesim","Tourné (Turne)","Sebzelerin 7 eşit yüzeyli ve 5 cm boyunda fıçı formunda yontulması","Klasik Fransız dekoratif kesim tekniğidir."],
+  ["kesim","Concasse","Domatesin kabuğu soyulup çekirdekleri çıkarıldıktan sonra küp doğranması","Öncesinde kaynar suda 10 sn Blanching uygulanır."],
+  ["kesim","Paysanne","10x10x2 mm ölçülerinde ince yassı kare veya üçgen köylü usulü doğrama","Çorbalarda kaşığa uyumlu geleneksel kesimdir."],
+  ["kesim","Mornay Doğrama","Jülyen doğranmış sebzelerin özel yemeklerde kullanım hazırlığı","Fransız mutfak terminolojisinde ara kesimdir."],
+  ["sos","Béchamel Sos","Beyaz Roux üzerine sıcak süt eklenip muskatla aromalandırılan anne sos","Mornay sosun ve gratenlerin temelidir."],
+  ["sos","Velouté Sos","Sarışın Roux üzerine beyaz fond eklenerek yapılan anne sos","Béchamel'den farkı süt yerine stok kullanılmasıdır."],
+  ["sos","Espagnole Sos","Kahverengi Roux, kahverengi kemik fondu, Mirepoix ve domates püreli anne sos","Demi-Glace sosun başlangıç tabanıdır."],
+  ["sos","Hollandaise Sos","Yumurta sarısı, saf tereyağı ve limonla benmaride yapılan sıcak emülsiyon sos","65°C üzerinde yumurta pişip sos kesilebilir."],
+  ["sos","Béarnaise Sos","Hollandaise tabanına tarhun otu, arpacık soğanı ve sirke çektirmesi eklenen sos","Izgara bonfile ve Chateaubriand klasiğidir."],
+  ["sos","Mornay Sos","Béchamel sos içerisine Gruyère ve Parmesan peyniri eklenerek hazırlanan sos","Sebze ve deniz ürünü gratenlerde kullanılır."],
+  ["sos","Liaison (Liyezon)","Çorba ve sosları bağlamak için kullanılan yumurta sarısı ve krema karışımı","Temperlenerek eklenir ve tekrar kaynatılmaz."],
+  ["sos","Consommé","Yumurta akı, yağsız kıyma ve Mirepoix ile berraklaştırılmış kristal çorba","Protein pıhtısı tüm tortuları hapseder."],
+  ["sos","Demi-Glace","Eşit oranda Espagnole sos ve kahverengi dana fondunun yarı yarıya çektirilmesi","Klasik kahverengi et soslarının merkezidir."],
+  ["sos","Mayonez","Yumurta sarısı, sıvı yağ ve sirke/limon suyu ile yapılan soğuk emülsiyon sos","Temel soğuk sosların atasıdır."],
+  ["sos","Cocktail Sos","Mayonez tabanına ketçap, worcestershire ve viski eklenerek yapılan sos","Deniz ürünleri ile klasik uyum sağlar."],
+  ["pisirme","Poşe (Poaching)","71°C - 82°C aralığında sıvıyı kaynatmadan kabarcıksız hassas pişirme","Yumurta ve narin balık filetoları için idealdir."],
+  ["pisirme","Breze (Braising)","Büyük parça etlerin önce mühürlenip sonra az sıvıyla kapalı kapta ağır pişirilmesi","Bağ dokusunu jelatine dönüştüren karma yöntemdir."],
+  ["pisirme","Maillard Reaksiyonu","140°C üzerinde amino asitler ve şekerlerin tepkimeye girerek kabuk oluşturması","Mühürlenen etin lezzetini veren kimyasal tepkimedir."],
+  ["pisirme","Blanching","Sebzeleri kaynar suda kısa süre haşlayıp hemen buzlu suya çıkarma","Enzimleri durdurur ve yeşil rengi korur."],
+  ["pisirme","Sous-Vide","Gıdaların vakumlu poşette sabit düşük ısılı su banyosunda pişirilmesi","Nem kaybını minimuma indirir."],
+  ["pisirme","Confit (Konfi)","Etin kendi yağında düşük sıcaklıkta uzun süre yavaşça pişirilmesi","Ördek budu için klasikleşmiş yöntemdir."],
+  ["pisirme","Deglaze","Soteleme sonrası tava dibindeki karamelize kalıntıları sıvı ile çözüp sos yapma","Pan sosların temel lezzet katmanıdır."],
+  ["pisirme","Grill (Izgara)","Doğrudan alt ısı kaynağı (ateş/rezistans) üzerinde pişirme yöntemi","Et yüzeyinde karakteristik çizgiler oluşturur."],
+  ["pisirme","Roasting","Et veya sebzelerin fırında kuru ısı ile kızartılarak pişirilmesi","Bütün büyük parça etler için idealdir."],
+  ["et","55°C - 57°C (Medium Rare)","Orta-Az pişmiş dana bonfilenin ideal merkez sıcaklığı","Merkezi sıcak kırmızı ve maksimum sululuktadır."],
+  ["et","50°C - 52°C (Rare)","Az pişmiş kırmızı etin ulaşması gereken merkez sıcaklığı","Dışı mühürlü, merkezi serin kırmızıdır."],
+  ["et","60°C - 63°C (Medium)","Orta pişmiş kırmızı etin ulaşması gereken merkez sıcaklığı","Merkezi pembe halkaya sahiptir."],
+  ["et","Chateaubriand","Dana bonfilenin en kalın orta merkezinden çıkarılan değerli kesim","Genellikle 2 kişilik porsiyonlanır."],
+  ["et","Dana Carpaccio","Çiğ dana bonfilenin yaprak dilimlenip zeytinyağı, roka ve parmesanla soğuk sunumu","Venedik'te Cipriani tarafından yaratılmıştır."],
+  ["et","Osso Buco","Dana incik kemiğinin enine dilimlenip sebze ve stokla Breze edildiği İtalyan klasiği","Yanında Gremolata ile servis edilir."],
+  ["et","Yassı Balıklar (Kalkan/Dil)","Gözleri tek tarafta bulunan ve 4 adet fileto çıkarılan balık grubu","Yuvarlak balıklardan 2, yassılardan 4 fileto çıkar."],
+  ["et","Ribeye","Dana antrikot bölgesinden elde edilen, ortasında yüksek yağ dokusu (göz) barındıran et kesimi","Yüksek lezzet ve yumuşaklığa sahiptir."],
+  ["et","Filet Mignon","Dana bonfilenin en ince ucundan çıkarılan porsiyonluk enfes et kesimi","Dünyanın en yumuşak etlerinden biridir."],
+  ["hijyen","Sarı Doğrama Tahtası","HACCP standartlarında Çiğ Kümes Hayvanları için kullanılan doğrama tahtası rengi","Salmonella çapraz bulaşmasını engeller."],
+  ["hijyen","Mavi Doğrama Tahtası","HACCP standartlarında Çiğ Balık ve Deniz Ürünleri için kullanılan tahta rengi","Deniz ürünü alerjen geçişini önler."],
+  ["hijyen","Kahverengi Doğrama Tahtası","HACCP standartlarında Pişmiş Etler ve Şarküteri ürünleri için kullanılan tahta rengi","Kırmızı tahta yalnızca çiğ kırmızı et içindir."],
+  ["hijyen","Yeşil Doğrama Tahtası","HACCP standartlarında Yıkanmış Sebze ve Meyveler için kullanılan tahta rengi","Toprak kaynaklı bulaşmaları önler."],
+  ["hijyen","4°C - 60°C (Tehlikeli Bölge)","Gıda güvenliğinde bakterilerin her 20 dakikada ikiye katlandığı sıcaklık aralığı","Gıdalar bu aralıkta 2 saatten fazla tutulamaz."],
+  ["hijyen","FEFO Prensibi","Depo yönetiminde 'Son Kullanma Tarihi Önce Olan Önce Çıkar' kuralı","Gıda güvenliğinde FIFO'dan önceliklidir."],
+  ["hijyen","Minimum 74°C","Kümes hayvanlarının güvenli tüketim için ulaşması gereken minimum merkez sıcaklığı","Tavuk eti asla az pişmiş sunulmaz."],
+  ["hijyen","Kırmızı Doğrama Tahtası","HACCP kurallarına göre çiğ kırmızı etlerin kesildiği tahta rengi","Çapraz bulaşmayı önlemek için ayrı tutulur."],
+  ["hijyen","Beyaz Doğrama Tahtası","HACCP standartlarında süt ürünleri ve ekmek/unlu mamuller için kullanılan tahta","Hijyen zincirinin korunmasını sağlar."]
+];
+
+const AUD=[
+  ["sos","Orijinal Fettuccine Alfredo",["Tereyağı","Parmigiano-Reggiano","Makarna Haşlama Suyu"],"Sarımsak, Tavuk Suyu ve Un","Geleneksel Alfredo sadece tereyağı ve parmesan emülsiyonudur."],
+  ["mengen","Geleneksel Mengen Pilavı",["Ceviz İçi","Kültür/Dağ Mantarı","Dereotu ve Kuşbaşı Et"],"Krema, Köri ve Mısır","Mengen pilavında krema veya köri yer almaz."],
+  ["et","Klasik Dana Carpaccio",["Çiğ Dana Bonfile","Sızma Zeytinyağı ve Limon","Parmesan ve Roka"],"Soya Sosu ve Pişmiş Antrikot","Carpaccio çiğ bonfileden hazırlanır."],
+  ["pasta","Pâte à Choux (Profiterol Hamuru)",["Su ve Tereyağı","Un ve Tuz","Yumurta"],"Yaş Maya ve Kabartma Tozu","Şu hamuru maya ile değil su buharıyla kabarır."],
+  ["pasta","Klasik Crème Anglaise",["Süt ve Krema","Yumurta Sarısı","Toz Şeker ve Vanilya"],"Mısır Nişastası ve Un","Anglaise nişastasızdır; nişasta girerse Crème Pâtissière olur."],
+  ["mengen","Fatih Dönemi Mutancana",["Kuzu Eti","Kuru Erik ve Kayısı","Badem ve Bal"],"Domates Salçası ve Patates","Domates ve patates Amerika'nın keşfinden sonra 18.-19. yüzyılda mutfağa girmiştir."],
+  ["tarih","Doğu Anadolu Kelecoş (Aşçıbaşı 1900)",["Kurut (Kurutulmuş Yoğurt)","Yufka","Kıyma ve Soğan"],"Beşamel Sos ve Kaşar Peyniri","Kelecoş kurut ile yapılan geleneksel bir Anadolu yemeğidir."],
+  ["tarih","Osmanlı Piruhi (Ev Kadını 1883)",["Tulum/Beyaz Peynirli İç","Üçgen/Kare Mantı Hamuru","Tereyağı ve Nane"],"Domates Ketçabı ve Soya Filizi","Piruhi, 1883 Ev Kadını kitabında yer alan peynir dolgulu geleneksel mantıdır."]
+];
+
+const CRISIS=[
+  ["sos","Servis sırasında Hollandaise sosun sıcaklığı 68°C'ye çıktı ve sos kesildi. Şef olarak nasıl kurtarırsın?","Ayrı bir kapta 1 kaşık ılık su/yumurta sarısı çırpıp kesilen sosu yavaşça yedirmek","Sosu yüksek ateşte kaynatmak","İçine soğuk süt dökmek","Un ekleyip kavurmak","Emülsiyon bozulduğunda yeni bir baz üzerine yavaşça çırparak geri bağlanır."],
+  ["pasta","Profiterol (Pâte à Choux) fırından çıkar çıkmaz sönüp çöktü. Temel teknik hata nedir?","Fırın kapağının erken açılması ve içerdeki nemin uçmadan çıkarılması","Hamura kabartma tozu konulmaması","Tereyağı yerine margarin kullanılması","Yumurtaların soğuk eklenmesi","Şu hamuru kabuğunu sertleştirmeden fırın açılırsa buhar basıncı düşer ve çöker."],
+  ["pasta","Kalıptan çıkan bitter çikolataların üzerinde gri-beyaz lekeler (Fat Bloom) oluştu ve matlaştı. Sebebi nedir?","Temperleme sıcaklığının (31-32°C) kaçırılması veya yanlış soğutma","Kakao oranının yüksek olması","Şekerin az konulması","Benmari suyunun tuzlu olması","Beta kristalleri düzgün oluşmazsa kakao yağı yüzeye çıkarak beyazlaşır."],
+  ["hijyen","Acil banket hazırlığında donmuş 10 kg tavuk göğsünü en güvenli (HACCP) nasıl çözdürürsün?","+4°C soğuk hava deposunda veya 21°C altı akan soğuk su altında","Tezgah üzerinde oda sıcaklığında","50°C sıcak su dolu küvette","Fırının ılık modunda","Oda sıcaklığında veya sıcak suda çözdürmek yüzey bakterilerini hızla çoğaltır."],
+  ["pisirme","Dana bonfile mühürlerken et suyunu saldı ve Maillard kabuğu oluşmadı. Sebebi nedir?","Tavanın yeterince kızgın olmaması ve tavaya tek seferde çok fazla et konulması","Etin oda sıcaklığında dinlendirilmesi","Döküm tava kullanılması","Etin yüzeyinin kağıt havluyla kurulanması","Tavayı aşırı doldurmak ısıyı düşürür; et mühürlenmek yerine kendi suyunda haşlanır."],
+  ["sos","Consommé yaparken üstte oluşan protein tabakası (Raft) dağıldı ve çorba bulanıklaştı. Hata nedir?","Çorbanın fokurdayarak yüksek ateşte kaynatılması ve Raft'ın karıştırılması","Yumurta akı kullanılması","Mirepoix sebzelerinin eklenmesi","Soğuk stokla başlanması","Consommé asla fokurdatılmaz; yüksek kaynama Raft filtresini parçalar."],
+  ["kesim","Chiffonade doğradığın taze fesleğenlerin kenarları 5 dakika içinde simsiyah karardı. Sebebi nedir?","Kör bıçakla ezerek doğrama sonucu hücre duvarlarının parçalanıp oksitlenmesi","Tahtanın yeşil olması","Fesleğenin yıkanmış olması","Yaprakların rulo yapılması","Kör bıçak yaprağı ezer ve polifenol oksidaz enzimiyle hızlı kararmaya yol açar."],
+  ["et","Fırından çıkan Chateaubriand'ı dinlendirmeden (Resting yapmadan) hemen dilimledin. Ne olur?","Kas lifleri kasıldığı için tüm et suyu tahtaya akar ve et kurur","Etin iç sıcaklığı 20 derece birden düşer","Etin rengi yeşile döner","Mühür kabuğu kalınlaşır","Dinlendirme (5-8 dk) öz suların lifler arasına eşit dağılmasını sağlar."]
+];
+
+const TF=[
+  ["hijyen","HACCP sisteminde çiğ kümes hayvanları Mavi doğrama tahtasında kesilir.","YANLIŞ","Mavi tahta çiğ balık içindir; çiğ kümes hayvanları SARI tahtada kesilir."],
+  ["pasta","Fırıncı yüzdesinde (Baker's Percentage) un miktarı her zaman %100 kabul edilir.","DOĞRU","Diğer tüm malzemeler unun ağırlığına oranla yüzde olarak hesaplanır."],
+  ["tarih","Basılı ilk Türkçe yemek kitabı 1844 tarihli Melceü't-Tabbahin (Aşçıların Sığınağı) eseridir.","DOĞRU","Mehmet Kamil tarafından kaleme alınmış ve 1844'te İstanbul'da basılmıştır."],
+  ["sos","Velouté sos, beyaz Roux üzerine sıcak süt eklenerek hazırlanan anne sostur.","YANLIŞ","Süt ile yapılan Béchamel sostur; Velouté sos beyaz stok ile yapılır."],
+  ["et","Medium Rare (Orta-Az) pişmiş dana bonfilenin merkez sıcaklığı 55°C - 57°C aralığındadır.","DOĞRU","55-57°C sıcak kırmızı merkezi ve ideal sululuğu verir."],
+  ["tarih","Osmanlı saray mutfağında tatlı, reçel ve şerbetlerin üretildiği bölüme Bakırhane denir.","YANLIŞ","Tatlı ve şerbetler Helvahane'de üretilir; Bakırhane bulaşık yıkama bölümüdür."],
+  ["mengen","Selçuklularda yoğurdun kurutulmasıyla elde edilen kışlık ürüne Kurut adı verilmiştir.","DOĞRU","Kurut kışın ılık suda ezilerek çorba ve yemeklerde kullanılmıştır."],
+  ["pisirme","Maillard reaksiyonu gıdaların kaynar suda haşlanmasıyla gerçekleşen bir tepkimedir.","YANLIŞ","Maillard reaksiyonu 140°C üzerindeki kuru ısıda gerçekleşir."],
+  ["tarih","Bilinen ilk Osmanlı yemek yazması 15. yüzyılda Şirvani'nin çevirdiği Kitabü't-Tabih eseridir.","DOĞRU","Hekim Şirvani eseri Bağdadi'den çevirmiş ve 80'den fazla yeni tarif eklemiştir."],
+  ["mengen","Hitit tabletlerinde kraliyet yemeği olarak geçen sulu sütlü yemeğe Halantiye Bulamacı denir.[span_6](start_span)[span_6](end_span)","DOĞRU","Boğazköy metinlerinde ayrıca 180'e yakın un mamulü kayıtlıdır[span_7](start_span)[span_7](end_span)."]
+];
+// --- YENİ EKLENEN MİSE EN PLACE VE STANDART REÇETE SORULARI ---
+
+const DB_YENI=[
+  ["mengen","Mise en Place","Yiyecek-içecek işletmelerinin açılışından kapanışına kadar devam eden ön hazırlık çalışmalarının tümü","Restoranda genel düzeni sağlamak ve temizliği sürdürmektir."],
+  ["mengen","Kuver (Couvert)","Müşterilerin yemek yerken ihtiyaç duydukları malzemelerin bir düzen dahilinde masaya yerleştirilmesi","Amerikan literatüründe 'set-up' olarak geçer."],
+  ["mengen","Basit Kuver","İçki servisinin olmadığı, tencere ve ızgara yemekleri sunan küçük işletmelerde uygulanan kuver çeşidi","Çorba kaşığı, ana yemek bıçağı-çatalı ve su bardağından oluşur."],
+  ["mengen","Geliştirilmiş Kuver","Lüks ve alakart restoranlarda uygulanan, basit kuvere şarap bardağı ve ordövr takımları eklenen kuver","Uluslararası standartlardaki alakart servislerde tercih edilir."],
+  ["mengen","Ziyafet (Banket) Kuveri","Büyük otellerde nişan, düğün ve balo gibi toplu etkinliklerde sunulan kuver çeşidi","Mönüsü önceden belirlendiği için hazırlığı kolaydır."],
+  ["kesim","ÇKB Yerleşim Kuralı","Çatal, kaşık ve bıçakların masaya yerleştirilirken içeriden dışarıya doğru dizilmesi kuralı","Dışarıdan içeriye doğru sırayla kullanılırlar."],
+  ["kesim","Tatlı ÇKB Konumu","Tatlı çatal, kaşık ve bıçaklarının kuver tabağının üst tarafında masaya paralel yerleştirilmesi","Tatlı servisinden önce masada hazır bulundurulur."],
+  ["kesim","Kuver Kenar Mesafesi","Kuver tabağının masa kenarına uzaklığının ortalama 2 cm olması kuralı","ÇKB alt kısımları taban hizasında olmalıdır."],
+  ["kesim","Bardak Konumu","Universal veya su bardağının ana yemek bıçağının 2-3 cm karşısına yerleştirilmesi","Sağ üst çaprazda konumlandırılır."],
+  ["mengen","Standart Tarifelerin Önemi","Toplu beslenme servislerinde kalitenin, tutarlılığın ve ucuz maliyetin oluşturulması","İşletmelerde standart 4 ana unsurdan biridir."]
+];
+
+const AUD_YENI=[
+  ["mengen","Basit Kuver İçeriği",["Çorba Kaşığı","Ana Yemek Bıçağı ve Çatalı","Su Bardağı"],"Tatlı Çatalı ve Beyaz Şarap Bardağı","Basit kuverde içki bardağı ve tatlı takımları standart olarak yer almaz."],
+  ["mengen","Geliştirilmiş Kuver Özellikleri",["Ordövr Çatal ve Bıçağı","Şarap Bardakları","Orta Boy Takımlar"],"Plastik Kaşık ve Pipet","Geliştirilmiş kuver lüks alakart restoranlar için tasarlanmıştır."]
+];
+
+const CRISIS_YENI=[
+  ["mengen","Servis esnasında konuk masasında eksik bir ÇKB fark edildiğinde en doğru yaklaşım nedir?","Servis akışını bozmadan, sessiz ve hızlı bir şekilde eksik takımı uygun kurala göre masaya tamamlamak","Konuğun istemesini beklemek","Eksik takımı fark etmemiş gibi yapmak","Yemeğin bitmesini beklemek","Kusursuz servis için ön hazırlık ve anlık kontrol esastır."]
+];
+
+const TF_YENI=[
+  ["mengen","Kuver açılırken çatal, kaşık ve bıçaklar masaya dışarıdan içeriye doğru dizilir.","YANLIŞ","ÇKB'lar masaya içeriden dışarıya doğru dizilir, dışarıdan içeriye doğru kullanılır."],
+  ["mengen","Basit kuver genellikle lüks ve alakart servis yapan restoranlarda tercih edilir.","YANLIŞ","Basit kuver içki servisinin olmadığı küçük otel ve tencere yemeği sunan mekanlarda uygulanır."],
+  ["mengen","Tatlı çatal ve bıçakları kuver tabağının üst tarafında masaya paralel şekilde yerleştirilir.","DOĞRU","Tatlı takımları tabağın üst kısmına yatay olarak konumlandırılır."]
+];

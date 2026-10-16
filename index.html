@@ -72,6 +72,45 @@ button.pill{cursor:pointer}
 .mbtn{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:12px;padding:14px;font-size:13.5px;font-weight:800;width:100%;cursor:pointer;margin-top:8px}
 .mbtn.alt{background:var(--surf2);color:var(--txt);border:1px solid var(--bdr)}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e293b;border:1px solid var(--gold2);color:var(--txt);padding:10px 16px;border-radius:10px;font-size:12px;font-weight:700;z-index:99;display:none;box-shadow:0 8px 25px rgba(0,0,0,.6);text-align:center;width:90%;max-width:400px}
+
+.hero2{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#2a1c0a,var(--surf));border:1px solid rgba(245,158,11,.4);border-radius:18px;padding:16px}
+.medal{position:relative;width:84px;height:84px;flex-shrink:0}
+.medal svg{width:100%;height:100%;transform:rotate(-90deg)}
+.rg,.rf{fill:none;stroke-width:7}.rg{stroke:rgba(255,255,255,.08)}
+.rf{stroke:var(--gold2);stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .8s ease}
+.medal span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 26px Georgia,"Times New Roman",serif;color:var(--gold2)}
+.hinfo{min-width:0}.hinfo h1{font:700 21px/1.15 Georgia,"Times New Roman",serif;margin:2px 0}
+.hinfo p{font-size:11.5px;color:var(--mut);line-height:1.35}
+.hstat{display:flex;gap:12px;font-size:11.5px;margin-top:8px;flex-wrap:wrap}.hstat b{color:var(--gold2)}
+.cta{width:100%;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--gold),var(--gold2));color:#1a1000;border:none;border-radius:16px;padding:16px 18px;cursor:pointer;animation:pulse 2.4s infinite;text-align:left}
+.cta b{display:block;font:700 19px Georgia,"Times New Roman",serif}.cta small{font-size:11px;font-weight:600;opacity:.75}
+.go{width:38px;height:38px;border-radius:50%;background:#1a1000;color:var(--gold2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chip{background:var(--surf);border:1px solid var(--bdr);color:var(--txt);border-radius:12px;padding:12px 11px;font-size:11.5px;font-weight:700;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:6px;line-height:1.3}
+.chip.err{border-color:rgba(239,68,68,.5);background:rgba(239,68,68,.1)}.chip.err b{background:var(--red);border-radius:9px;padding:1px 8px;font-size:11px}
+.chip.rec{border-color:rgba(16,185,129,.45);background:rgba(16,185,129,.08)}
+.sec{font:italic 700 15px Georgia,"Times New Roman",serif;color:var(--gold2);margin:10px 2px 0;display:flex;align-items:center;gap:10px}.sec::after{content:"";flex:1;height:1px;background:var(--bdr)}
+.list{display:flex;flex-direction:column;background:var(--surf);border:1px solid var(--bdr);border-radius:16px;overflow:hidden}
+.row{display:flex;gap:12px;align-items:center;background:none;border:none;border-bottom:1px solid var(--bdr);color:var(--txt);padding:12px 14px;text-align:left;cursor:pointer;width:100%}
+.row:last-child{border-bottom:none}.row:active{background:rgba(245,158,11,.08)}
+.ico{font-size:21px;width:42px;height:42px;border-radius:12px;background:#080c12;border:1px solid var(--ac,var(--bdr));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rbody{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.rline{display:flex;align-items:baseline}.rline b{font-size:13.5px;font-weight:700}
+.dl{flex:1;border-bottom:2px dotted rgba(255,255,255,.2);margin:0 6px;min-width:10px}
+.rline em{font-style:normal;font-size:11.5px;font-weight:800;color:var(--ac,var(--gold2))}
+.rbody small{font-size:10.5px;color:var(--mut);line-height:1.3}
+.rbar{height:3px;background:#080c12;border-radius:9px;overflow:hidden}.rbar u{display:block;height:100%;width:0;background:var(--ac,var(--gold2));transition:width .5s}
+.pool{text-align:center;font-size:10px;color:var(--mut);margin-top:6px}
+.daily{display:flex;align-items:center;gap:12px;width:100%;background:linear-gradient(90deg,rgba(56,189,248,.16),var(--surf));border:1px solid rgba(56,189,248,.5);border-radius:16px;padding:12px 14px;color:var(--txt);cursor:pointer;text-align:left}
+.daily.done{opacity:.55;border-color:var(--bdr)}
+.dic{font-size:22px;width:42px;height:42px;border-radius:12px;background:#080c12;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.dtx{flex:1;display:flex;flex-direction:column;gap:2px}.dtx b{font:700 15px Georgia,"Times New Roman",serif}.dtx small{font-size:10.5px;color:var(--mut)}
+.dgo{color:var(--blu);font-size:13px;font-weight:800}
+.bdg{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.b{display:flex;flex-direction:column;align-items:center;gap:3px;filter:grayscale(1);opacity:.35}.b.on{filter:none;opacity:1}
+.b span{width:44px;height:44px;border-radius:50%;background:var(--surf);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:20px}
+.b.on span{border-color:var(--gold2);box-shadow:0 0 10px rgba(245,158,11,.35)}
+.b small{font-size:8.5px;color:var(--mut);text-align:center;line-height:1.2}
 </style>
 </head>
 <body>
@@ -85,19 +124,25 @@ button.pill{cursor:pointer}
   </header>
 
   <section class="scr active" id="menuScr">
-    <div class="hero">
-      <div class="htag"><span>MENGEN GASTRONOMİ AKADEMİSİ</span><span id="poolBadge">HAVUZ: YÜKLENİYOR...</span></div>
-      <h1>Şefin İstasyonu: Ustalık Sınavı</h1>
-      <p>Akıllı soru çarpanı, adisyon baskınları, kriz yönetimi ve canlı maliyet hesapları. Her gün oyna, seriyi koru.</p>
-      <div class="sstrip">
-        <div><small>Rekor</small><b id="bVal">0</b></div>
-        <div><small>Doğru</small><b id="sVal">0</b></div>
-        <div><small>Rütbe</small><b id="rShort">I / VII</b></div>
-        <div><small>Hata</small><b id="wCount" style="color:#f87171">0</b></div>
-        <div><small>Seri</small><b id="streak">0 gün</b></div>
+    <div class="hero2">
+      <div class="medal"><svg viewBox="0 0 100 100"><circle class="rg" cx="50" cy="50" r="44"/><circle class="rf" id="ring" cx="50" cy="50" r="44" pathLength="100"/></svg><span id="rShort">I</span></div>
+      <div class="hinfo">
+        <p>Hoş geldin Şef</p>
+        <h1 id="hRank">Stajyer Çırak</h1>
+        <p id="hXp"></p>
+        <div class="hstat"><span>🔥 <b id="streak">0 gün</b></span><span>🏆 <b id="bVal">0</b></span><span>✓ <b id="sVal">0</b></span></div>
       </div>
     </div>
-    <div class="grid" id="stGrid"></div>
+    <button type="button" class="daily" id="dailyBtn" data-c="daily"><span class="dic">📋</span><span class="dtx"><b>Günün Siparişi</b><small id="dailyTxt">7 soru • +60 kredi • günde bir kez</small></span><span class="dgo">▶</span></button>
+    <button type="button" class="cta" data-c="all"><span><b>Vardiyaya Başla</b><small>30 soruluk karma sınav • 3 can</small></span><span class="go">▶</span></button>
+    <div class="chips">
+      <button type="button" class="chip err" data-c="wrong"><span>⚠️ Hatalı Tabaklar</span><b id="wCount">0</b></button>
+      <button type="button" class="chip rec" id="recBtn" data-c="servis"><span>⭐ <span id="recTxt"></span></span></button>
+    </div>
+    <h3 class="sec">Rozetler</h3><div class="bdg" id="bdg"></div>
+    <h3 class="sec">Uzmanlık Menüsü</h3><div class="list" id="lstA"></div>
+    <h3 class="sec">Klasik Bölümler</h3><div class="list" id="lstB"></div>
+    <p class="pool" id="poolBadge">HAVUZ: YÜKLENİYOR...</p>
     <button type="button" class="rst" onclick="resetAll()">Tüm ilerlemeyi sıfırla</button>
   </section>
 
@@ -220,36 +265,41 @@ let st={xp:num("mg_xp",0),gold:num("mg_gold",100),best:num("mg_best",0),solv:num
   wrongs:(a=>Array.isArray(a)?a.filter(w=>w&&w.q&&Array.isArray(w.o)).slice(-200):[])(getS("mg_wrongs",[])),
   cs:(o=>o&&typeof o==="object"&&!Array.isArray(o)?o:{})(getS("mg_cs",{})),
   day:(o=>o&&typeof o==="object"&&Number.isFinite(o.n)?o:{last:"",n:0})(getS("mg_day",null)),
-  snd:getS("mg_snd",true)!==false,
+  snd:getS("mg_snd",true)!==false,dd:getS("mg_dd",""),
   sessionErrs:[],cat:"all",scr:0,cmb:1,liv:3,deck:[],q:null,tm:null,left:22,maxT:22,dl:0,lock:0,qCount:0,okCount:0,total:0,lost:0,used:{},bestStart:0};
 
 const rankIdx=()=>{let r=0;RANKS.forEach((x,i)=>{if(st.xp>=x[0])r=i});return r};
 function hud(){
-  setS("mg_xp",st.xp);setS("mg_gold",st.gold);setS("mg_best",st.best);setS("mg_solved",st.solv);setS("mg_wrongs",st.wrongs);setS("mg_cs",st.cs);setS("mg_snd",st.snd);
+  setS("mg_xp",st.xp);setS("mg_gold",st.gold);setS("mg_best",st.best);setS("mg_solved",st.solv);setS("mg_wrongs",st.wrongs);setS("mg_cs",st.cs);setS("mg_snd",st.snd);setS("mg_dd",st.dd);
   let ri=rankIdx(),cur=RANKS[ri],nxt=RANKS[ri+1];
   $("rBdg").textContent=cur[1];$("rNam").textContent=cur[2];
   $("xpTxt").textContent=nxt?`${st.xp} / ${nxt[0]} XP`:`${st.xp} XP • MAKS`;
-  $("xpBar").style.width=(nxt?Math.max(5,Math.round((st.xp-cur[0])/(nxt[0]-cur[0])*100)):100)+"%";
-  $("rShort").textContent=cur[1]+" / VII";$("wCount").textContent=st.wrongs.length;
-  $("wDesc").textContent=`Kayıtlı hatalı tabak: ${st.wrongs.length} (doğru çözünce silinir)`;
+  let pc=nxt?Math.max(5,Math.round((st.xp-cur[0])/(nxt[0]-cur[0])*100)):100;$("xpBar").style.width=pc+"%";$("ring").style.strokeDashoffset=100-pc;$("hRank").textContent=cur[2];$("hXp").textContent=nxt?`${nxt[0]-st.xp} XP sonra ${nxt[2]} rütbesi`:"En yüksek rütbedesin";
+  $("rShort").textContent=cur[1];$("wCount").textContent=st.wrongs.length;
   $("gVal").textContent=st.gold;$("bVal").textContent=st.best;$("sVal").textContent=st.solv;
   $("lBox").innerHTML=[0,1,2].map(i=>`<div class="dot ${i>=st.liv?"lost":""}"></div>`).join("");
   $("sndBtn").textContent=st.snd?"🔊":"🔇";
   let t=new Date(),alive=st.day.last===ymd(t)||st.day.last===ymd(new Date(Date.now()-864e5));
   $("streak").textContent=(alive?st.day.n:0)+" gün";
-  CATS.forEach(c=>{let e=$("m_"+c[0]),s=st.cs[c[0]];if(e)e.textContent=s&&s.a?"%"+Math.round(s.c/s.a*100)+" hakim":"Yeni"});
+  CATS.forEach(c=>{let e=$("m_"+c[0]),s=st.cs[c[0]],p=s&&s.a?Math.round(s.c/s.a*100):0;if(e){e.textContent=s&&s.a?"%"+p:"Yeni";$("b_"+c[0]).style.width=p+"%"}});
+  let rc=CATS.map(c=>{let s=st.cs[c[0]];return[c,s&&s.a?s.c/s.a:-1]}).sort((a,b)=>a[1]-b[1])[0];
+  $("recBtn").dataset.c=rc[0][0];$("recTxt").textContent=(rc[1]<0?"Dene: ":"Çalış: ")+rc[0][2];
+  let dn=st.dd===ymd(new Date());$("dailyTxt").textContent=dn?"Bugünkü sipariş teslim edildi ✓":"7 soru • +60 kredi • günde bir kez";$("dailyBtn").classList.toggle("done",dn);
+  let nm=CATS.filter(c=>{let q=st.cs[c[0]];return q&&q.a>=10&&q.c/q.a>=.8}).length;
+  const B=[["🥄","İlk adım",st.solv>=1],["🔥","3 gün seri",alive&&st.day.n>=3],["🎯","50 doğru",st.solv>=50],["🧑‍🍳","Sous Chef",ri>=4],["🏆","500 puan",st.best>=500],["⭐","3 uzman",nm>=3]];
+  $("bdg").innerHTML=B.map(b=>`<div class="b ${b[2]?"on":""}"><span>${b[0]}</span><small>${b[1]}</small></div>`).join("");
 }
+const COL={servis:"#34d399",pasta:"#f472b6",maliyet:"#38bdf8",tarih:"#fbbf24",mengen:"#fb923c",kesim:"#a3e635",sos:"#c084fc",pisirme:"#f87171",et:"#fda4af",hijyen:"#67e8f9"};
+const ICO={servis:"🍽️",pasta:"🥐",maliyet:"🧮",tarih:"📜",mengen:"🍲",kesim:"🔪",sos:"🥣",pisirme:"🔥",et:"🥩",hijyen:"🧼"};
 function drawMenu(){
-  const card=(id,cls,code,title,desc,extra)=>`<button type="button" class="scard ${cls}" data-c="${id}"><div class="stop"><span class="scode">${code}</span><span class="mast" ${extra}></span></div><h3>${title}</h3><p ${id==="wrong"?'id="wDesc"':""}>${desc}</p></button>`;
-  $("stGrid").innerHTML=
-    card("all","full","AKADEMİK FİNAL","Kapsamlı Başaşçılık Sınavı","30 soruluk karma vardiya: tüm istasyonlar, baskınlar, krizler, maliyet","")+
-    card("wrong","err","TEKRAR KAMPI","⚠️ Hatalı Tabaklarım","","")+
-    CATS.map(c=>card(c[0],c[4],c[1],c[2],c[3],`id="m_${c[0]}"`)).join("");
-  $("stGrid").onclick=e=>{let b=e.target.closest("[data-c]");if(b)start(b.dataset.c)};
+  const row=c=>`<button type="button" class="row ${c[4]}" data-c="${c[0]}" style="--ac:${COL[c[0]]||"#f59e0b"}"><span class="ico">${ICO[c[0]]||"🍴"}</span><span class="rbody"><span class="rline"><b>${c[2]}</b><span class="dl"></span><em id="m_${c[0]}">Yeni</em></span><small>${c[3]}</small><span class="rbar"><u id="b_${c[0]}"></u></span></span></button>`;
+  $("lstA").innerHTML=CATS.filter(c=>c[4]).map(row).join("");
+  $("lstB").innerHTML=CATS.filter(c=>!c[4]).map(row).join("");
+  $("menuScr").onclick=e=>{let b=e.target.closest("[data-c]");if(b)start(b.dataset.c)};
 }
 function resetAll(){
   if(!confirm("Tüm XP, kredi, rekor ve hatalı tabaklar silinecek. Emin misin?"))return;
-  ["xp","gold","best","solved","wrongs","cs","day","snd"].forEach(k=>{try{localStorage.removeItem("mg_"+k)}catch(e){}});
+  ["xp","gold","best","solved","wrongs","cs","day","snd","dd"].forEach(k=>{try{localStorage.removeItem("mg_"+k)}catch(e){}});
   location.reload();
 }
 function daily(){
@@ -291,9 +341,14 @@ function genMath(){
 const BLITZ="⚡ ADİSYON BASKINI • 12 SN";
 function build(cat){
   mergeData();
+  if(cat==="daily"){
+    let t=ymd(new Date()),h=0;for(let i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))>>>0;
+    let R=Math.random;Math.random=()=>{h=(h+0x6D2B79F5)>>>0;let x=Math.imul(h^h>>>15,1|h);x=x+Math.imul(x^x>>>7,61|x)^x;return((x^x>>>14)>>>0)/4294967296};
+    try{return build("all").slice(0,7)}finally{Math.random=R}
+  }
   if(cat==="wrong")return shuf(st.wrongs.map(w=>({...w,o:w.tf?["DOĞRU","YANLIŞ"]:shuf(w.o)})));
   let d=[];
-  if(cat==="maliyet"){for(let i=0;i<30;i++)d.push(genMath());return d}
+  if(cat==="maliyet")for(let i=0;i<14;i++)d.push(genMath());
   let all=cat==="all",list=all?M_DB:M_DB.filter(x=>x[0]===cat);
   list.forEach((k,idx)=>{
     let k1=cleanTxt(k[1]),k2=cleanTxt(k[2]),k3=cleanTxt(k[3]),c=k[0],T=c.toUpperCase();
@@ -327,6 +382,7 @@ function show(id){document.querySelectorAll(".scr").forEach(s=>s.classList.remov
 function start(c){
   tapSfx();
   if(c==="wrong"&&!st.wrongs.length){msg("Hatalı tabağın yok Şef! Yanlış yaptığın sorular otomatik buraya eklenir.");return}
+  if(c==="daily"&&st.dd===ymd(new Date())){msg("Bugünün siparişini teslim ettin Şef. Yarın yenisi gelir.");return}
   let deck=build(c);
   if(!deck.length){msg("Bu istasyonda henüz soru yok.");return}
   daily();clearInterval(st.tm);
@@ -423,6 +479,7 @@ function end(done){
   let extra="";
   if(done){let b=st.lost===0?40:20;st.xp+=b;extra=` Vardiya tamamlandı: +${b} XP${st.lost===0?" (hatasız bonus)":""}.`}
   if(st.scr>0&&st.scr>st.bestStart)extra+=" 🏆 Yeni rekor!";
+  if(done&&st.cat==="daily"){st.dd=ymd(new Date());st.gold+=60;extra+=" 📋 Günün siparişi teslim edildi: +60 kredi."}
   $("fGrade").textContent="Akademik Not: "+gr;
   $("fScr").textContent=st.scr+" Puan";$("fOk").textContent=st.okCount+" / "+(st.okCount+st.lost);$("fAcc").textContent="%"+acc;
   $("errSummary").innerHTML=st.sessionErrs.length?`<b>Bu vardiyada kaçırdığın noktalar:</b><br>`+st.sessionErrs.join("<br>"):"Bu vardiyada hiç hatalı tabak çıkmadı! Kusursuz iş Şef.";

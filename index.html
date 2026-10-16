@@ -415,3 +415,174 @@ hud();
 </script>
 </body>
 </html>
+<script>
+const getS=(k,d)=>{try{let v=localStorage.getItem(k);return v!==null?JSON.parse(v):d}catch(e){return d}};
+const setS=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let actx=null;
+function sfx(f,t,d){try{if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();if(actx.state==="suspended")actx.resume();let o=actx.createOscillator(),g=actx.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.07,actx.currentTime);g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+d);o.connect(g);g.connect(actx.destination);o.start();o.stop(actx.currentTime+d)}catch(e){}}
+const okSfx=()=>{sfx(523,"sine",.09);setTimeout(()=>sfx(659,"sine",.16),75)},noSfx=()=>{sfx(196,"triangle",.18);setTimeout(()=>sfx(146,"sawtooth",.22),95)},tapSfx=()=>sfx(440,"sine",.04);
+
+let toastTm=null;
+function msg(txt){let t=document.getElementById("toastBox");t.textContent=txt;t.style.display="block";clearTimeout(toastTm);toastTm=setTimeout(()=>t.style.display="none",2600);}
+
+const STS=[
+  ["all","AKADEMİK FİNAL","Kapsamlı Başaşçılık Sınavı","Tüm istasyonlar, Adisyon Baskınları, Krizler ve Canlı Maliyet",1,0],
+  ["wrong","TEKRAR KAMPI","⚠️ Hatalı Tabaklarım","Yanlış yaptığın soruları çözerek sıfır hataya ulaş",0,2],
+  ["pasta","UZMANLIK 01","Patisserie & Fırıncılık","Şu hamuru, merengler, çikolata temperleme, krema ve tartlar",0,1],
+  ["maliyet","UZMANLIK 02","Mutfak Matematiği & Cost","6 farklı canlı hesap: Fire, Food Cost, Hidratasyon, Banket",0,1],
+  ["tarih","BÖLÜM 03","Mutfak Tarihi & Eserler","Hitit, Selçuklu, Osmanlı yazmaları ve yemek kitapları",0,0],
+  ["mengen","BÖLÜM 04","Mengen & Geleneksel","Bolu-Mengen mirası, saray mutfağı ve Anadolu kültürü",0,0],
+  ["kesim","BÖLÜM 05","Kesim & Mise en Place","Standart Fransız bıçak kesim ölçüleri ve aromatik tabanlar",0,0],
+  ["sos","BÖLÜM 06","Anne Soslar & Çorbalar","5 temel anne sos, türev soslar, emülsiyon ve bağlayıcılar",0,0],
+  ["pisirme","BÖLÜM 07","Pişirme & Isı Tekniği","Kuru, nemli ve karma ısı transferi, Maillard ve Sous-Vide",0,0],
+  ["et","BÖLÜM 08","Et, Karkas & Deniz Ürünü","Merkez pişme dereceleri, bonfile kesimleri ve balıklar",0,0],
+  ["hijyen","BÖLÜM 09","Hijyen, HACCP & Krizler","Doğrama tahtası renkleri, kritik sıcaklıklar ve mutfak krizleri",0,0]
+];
+
+let st={xp:getS("mg_xp",0),gold:getS("mg_gold",80),best:getS("mg_best",0),solv:getS("mg_solved",0),wrongs:getS("mg_wrongs",[]),cat:"all",scr:0,cmb:1,liv:3,deck:[],q:null,tm:null,left:22,maxT:22,lock:0,qCount:0,okCount:0};
+const $=id=>document.getElementById(id),shuf=a=>[...a].sort(()=>Math.random()-.5);
+
+function hud(){
+  setS("mg_xp",st.xp);setS("mg_gold",st.gold);setS("mg_best",st.best);setS("mg_solved",st.solv);setS("mg_wrongs",st.wrongs);
+  let cur=RANKS[0],nxt=RANKS[1];
+  for(let i=0;i<RANKS.length;i++)if(st.xp>=RANKS[i][0]){cur=RANKS[i];nxt=RANKS[i+1]||[st.xp+500];}
+  $("rBdg").textContent=cur[1];$("rNam").textContent=cur[2];$("xpTxt").textContent=`${st.xp} / ${nxt[0]} XP`;
+  $("rShort").textContent=cur[1]+" / VII";$("wCount").textContent=st.wrongs.length;
+  $("xpBar").style.width=Math.max(5,Math.min(100,Math.round((st.xp-cur[0])/(nxt[0]-cur[0])*100)))+"%";
+  $("gVal").textContent=st.gold;$("bVal").textContent=st.best;$("sVal").textContent=st.solv;
+  $("lBox").innerHTML=[0,1,2].map(i=>`<div class="dot ${i>=st.liv?'lost':''}"></div>`).join("");
+}
+
+function renderMenu(){
+  STS.forEach(s=>{
+    if(s[0]==="wrong"){
+      let wEl=document.getElementById("wDesc");
+      if(wEl)wEl.textContent=`Kayıtlı Hatalı Tabak: ${st.wrongs.length} adet`;
+    }
+  });
+}
+
+function genMath(){
+  let m=Math.floor(Math.random()*6);
+  if(m===0){
+    let it=["Atlantik Somonu","Dana Bonfile","Kalkan Balığı","Kuzu Sırt"][Math.floor(Math.random()*4)],b=[5,8,10,20][Math.floor(Math.random()*4)],f=[15,20,25,30][Math.floor(Math.random()*4)],n=b*(100-f)/100;
+    return {t:"MALİYET • FİRE HESABI",q:`Brüt ${b} kg ${it} temizlenince ${n} kg net porsiyonluk ürün kalıyor. Fire oranı yüzde kaçtır?`,a:`%${f}`,o:shuf([`%${f}`,`%${f+5}`,`%${f-5}`,`%${f+10}`]),n:`Fire = (${b}-${n})/${b} = %${f}. Net Verim (Yield) %${100-f}'dir.`};
+  }else if(m===1){
+    let c=[60,75,90,120][Math.floor(Math.random()*4)],fc=[25,30][Math.floor(Math.random()*2)],p=Math.round(c/(fc/100));
+    return {t:"MALİYET • MENÜ FİYATLAMA",q:`Reçete maliyeti ${c} TL olan tabak için hedef Food Cost %${fc} ise vergisiz satış fiyatı kaç TL olmalıdır?`,a:`${p} TL`,o:shuf([`${p} TL`,`${p+40} TL`,`${p-30} TL`,`${p+75} TL`]),n:`Satış Fiyatı = Maliyet / Food Cost (${c} / 0.${fc} = ${p} TL).`};
+  }else if(m===2){
+    let fl=[1000,2000,3000][Math.floor(Math.random()*3)],h=[60,65,70][Math.floor(Math.random()*3)],w=fl*h/100;
+    return {t:"MALİYET • FIRINCI YÜZDESİ",q:`%${h} hidratasyonlu ekşi maya ekmek reçetesinde ${fl} g un için kaç gram su gerekir?`,a:`${w} g`,o:shuf([`${w} g`,`${w+150} g`,`${w-150} g`,`${w+300} g`]),n:`Fırıncı yüzdesinde un %100'dür: ${fl} x %${h} = ${w} g su.`};
+  }else if(m===3){
+    let g=[40,50,80,100][Math.floor(Math.random()*4)],net=g*.2,brut=net/.8;
+    return {t:"MALİYET • BANKET SİPARİŞİ",q:`${g} kişilik bankette kişi başı 200 g net bonfile sunulacaktır. Fire %20 (Verim %80) ise kaç kg brüt et sipariş edilmelidir?`,a:`${brut} kg`,o:shuf([`${brut} kg`,`${brut+2.5} kg`,`${brut-2} kg`,`${brut+5} kg`]),n:`Net ihtiyaç ${net} kg. Brüt Sipariş = ${net} / 0.80 = ${brut} kg.`};
+  }else if(m===4){
+    let mult=[5,6,8][Math.floor(Math.random()*3)],baseG=[120,150,200][Math.floor(Math.random()*3)],tot=baseG*mult;
+    return {t:"MALİYET • REÇETE ÖLÇEKLENDİRME",q:`4 porsiyonluk standart reçetede ${baseG} g tereyağı kullanılıyorsa, ${4*mult} porsiyonluk üretim için kaç gram tereyağı gerekir?`,a:`${tot} g`,o:shuf([`${tot} g`,`${tot+200} g`,`${tot-150} g`,`${tot+350} g`]),n:`Dönüşüm Çarpanı = ${4*mult} / 4 = ${mult}. İhtiyaç: ${baseG} x ${mult} = ${tot} g.`};
+  }else{
+    let sell=[200,300,400][Math.floor(Math.random()*3)],pct=[25,30,35][Math.floor(Math.random()*3)],cost=(sell*pct)/100;
+    return {t:"MALİYET • FOOD COST YÜZDESİ",q:`Vergisiz satış fiyatı ${sell} TL olan bir tabağın reçete maliyeti ${cost} TL ise gerçekleşen Food Cost oranı yüzde kaçtır?`,a:`%${pct}`,o:shuf([`%${pct}`,`%${pct+5}`,`%${pct-5}`,`%${pct+10}`]),n:`Food Cost % = (Maliyet / Satış) x 100 = (${cost} / ${sell}) x 100 = %${pct}.`};
+  }
+}
+
+function build(cat){
+  if(cat==="wrong")return shuf(st.wrongs.map(w=>({...w,o:w.tf?w.o:shuf(w.o)})));
+  let d=[];
+  if(cat==="maliyet"){for(let i=0;i<24;i++)d.push(genMath());return shuf(d);}
+  let list=cat==="all"?DB:DB.filter(x=>x[0]===cat);
+  list.forEach(k=>{
+    let same=DB.filter(x=>x[0]===k[0]&&x[1]!==k[1]);
+    d.push({t:k[0].toUpperCase()+" • TERMİNOLOJİ",q:`"${k[2]}" olarak tanımlanan kavram, eser veya standart hangisidir?`,a:k[1],o:shuf([k[1],...shuf(same).slice(0,3).map(x=>x[1])]),n:k[3]});
+    d.push({t:k[0].toUpperCase()+" • STANDART",q:`Mutfak literatüründe "${k[1]}" ifadesinin doğru karşılığı hangisidir?`,a:k[2],o:shuf([k[2],...shuf(same).slice(0,3).map(x=>x[2])]),n:k[3]});
+  });
+  (cat==="all"?AUD:AUD.filter(a=>a[0]===cat)).forEach(au=>{
+    d.push({t:"REÇETE DENETİMİ",q:`"${au[1]}" reçetesinde aşağıdakilerden hangisi kesinlikle YER ALMAZ?`,a:au[3],o:shuf([au[3],...au[2]]),n:au[4]});
+  });
+  (cat==="all"?CRISIS:CRISIS.filter(c=>c[0]===cat)).forEach(cr=>{
+    d.push({t:"ŞEFİN KARARI • KRİZ YÖNETİMİ",q:cr[1],a:cr[2],o:shuf([cr[2],cr[3],cr[4],cr[5]]),n:cr[6]});
+  });
+  (cat==="all"?TF:TF.filter(x=>x[0]===cat)).forEach(tf=>{
+    d.push({t:"⚡ ADİSYON BASKINI • 12 SN HIZ TURU",q:tf[1],a:tf[2],o:["DOĞRU","YANLIŞ"],n:tf[3],tf:1});
+  });
+  if(cat==="all")for(let i=0;i<14;i++)d.push(genMath());
+  return shuf(d);
+}
+
+function show(id){document.querySelectorAll(".scr").forEach(s=>s.classList.remove("active"));$(id).classList.add("active");window.scrollTo(0,0);hud();if(id==="menuScr")renderMenu();}
+function start(c){
+  if(c==="wrong"&&!st.wrongs.length){msg("Hatalı tabak kalmadı Şef!");return show("menuScr");}
+  clearInterval(st.tm);st.cat=c;st.scr=0;st.cmb=1;st.liv=3;st.qCount=0;st.okCount=0;st.deck=build(c);show("gameScr");nextQ();
+}
+function abort(){tapSfx();clearInterval(st.tm);show("menuScr");}
+function jSync(){$("j50").disabled=st.lock\vert{}\vert{}st.gold<15\vert{}\vert{}st.q?.tf===1;$("jTm").disabled=st.lock||st.gold<10;$("jSk").disabled=st.lock\vert{}\vert{}st.gold<15;$("jHn").disabled=st.lock||st.gold<25;}
+
+function nextQ(){
+  clearInterval(st.tm);
+  if(st.liv<=0)return end();
+  if(!st.deck.length){
+    if(st.cat==="wrong"){
+      if(!st.wrongs.length){msg("Tebrikler Şef! Tüm hatalı tabakları temizledin!");return end();}
+      st.deck=build("wrong");
+    }else{
+      st.deck=build(st.cat);
+    }
+  }
+  st.lock=0;st.qCount++;st.q=st.deck.pop();$("expBar").classList.remove("show");
+  let isTf=st.q.tf===1;
+  $("strTxt").textContent=st.cmb>=3?`🔥 Ateş Hattı: x${st.cmb}`:`Seri: x${st.cmb}`;
+  $("strTxt").classList.toggle("hot",st.cmb>=3);
+  $("qCard").className="qbox"+(isTf?" blitz":(st.cmb>=3?" hot":""));
+  $("scrTxt").textContent=st.scr+" Puan";$("qTag").textContent=st.q.t;$("qNum").textContent="Tabak #"+st.qCount;$("qTxt").textContent=st.q.q;
+  $("optWrap").className="opts"+(isTf?" tf-grid":"");
+  $("optWrap").innerHTML="";
+  let keys=isTf?["✓","✕"]:["A","B","C","D"];
+  st.q.o.forEach((opt,i)=>{
+    let b=document.createElement("button");b.className="obtn";b.dataset.v=opt;
+    b.innerHTML=`<span class="okey">${keys[i]}</span><span>${opt}</span>`;
+    b.onclick=()=>ans(b,opt);$("optWrap").appendChild(b);
+  });
+  jSync();st.maxT=isTf?12:22;st.left=st.maxT;$("tBar").style.width="100%";
+  st.tm=setInterval(()=>{st.left-=.1;$("tBar").style.width=Math.max(0,st.left/st.maxT*100)+"%";if(st.left<=0){clearInterval(st.tm);ans(null,"__TO__");}},100);
+}
+
+function ans(btn,val){
+  if(st.lock)return;st.lock=1;clearInterval(st.tm);jSync();
+  document.querySelectorAll(".obtn").forEach(b=>{if(b.dataset.v===st.q.a)b.classList.add("ok");});
+  if(val===st.q.a){
+    okSfx();let spd=Math.max(0,Math.floor(st.left/3)),pt=(20*st.cmb)+spd;
+    st.scr+=pt;st.xp+=16;st.gold+=6;st.cmb=Math.min(5,st.cmb+1);st.solv++;st.okCount++;
+    if(st.scr>st.best)st.best=st.scr;
+    if(st.cat==="wrong")st.wrongs=st.wrongs.filter(w=>w.q!==st.q.q);
+    $("expTxt").innerHTML=`<b style="color:var(--grn)">✓ Kusursuz Servis (+${pt} Puan | Hız +${spd})</b><br>${st.q.n}`;
+  }else{
+    noSfx();if(btn)btn.classList.add("no");st.liv--;st.cmb=1;
+    if(!st.wrongs.some(w=>w.q===st.q.q))st.wrongs.push({t:st.q.t,q:st.q.q,a:st.q.a,o:st.q.o,n:st.q.n,tf:st.q.tf||0});
+    $("expTxt").innerHTML=`<b style="color:var(--red)">${val==="__TO__"?"⏱ Süre Doldu!":"✕ Hatalı Tabak!"} Doğrusu: ${st.q.a}</b><br>${st.q.n}`;
+  }
+  hud();$("scrTxt").textContent=st.scr+" Puan";
+  let finishWrong=(st.cat==="wrong"&&!st.wrongs.length);
+  $("nxtBtn").textContent=(st.liv<=0||finishWrong)?"KARNEYİ GÖR":"SIRADAKİ ▶";
+  $("nxtBtn").onclick=()=>{tapSfx();(st.liv<=0||finishWrong)?end():nextQ();};
+  $("expBar").classList.add("show");
+}
+
+function u50(){if(st.lock||st.gold<15||st.q?.tf===1)return;tapSfx();st.gold-=15;hud();shuf([...document.querySelectorAll(".obtn")].filter(b=>b.dataset.v!==st.q.a&&!b.classList.contains("elim"))).slice(0,2).forEach(b=>b.classList.add("elim"));$("j50").disabled=true;}
+function uTm(){if(st.lock||st.gold<10)return;tapSfx();st.gold-=10;hud();st.left=Math.min(st.maxT,st.left+12);$("jTm").disabled=true;}
+function uSk(){if(st.lock||st.gold<15)return;tapSfx();st.gold-=15;hud();if(st.cat==="wrong"&&st.q)st.deck.unshift(st.q);st.qCount--;nextQ();}
+function uHn(){if(st.lock||st.gold<25)return;tapSfx();st.gold-=25;hud();document.querySelectorAll(".obtn").forEach(b=>{if(b.dataset.v===st.q.a)b.classList.add("glow");});$("jHn").disabled=true;}
+
+function end(){
+  clearInterval(st.tm);
+  let acc=st.qCount?Math.round((st.okCount/st.qCount)*100):0;
+  let gr=acc>=85?"A+ (Kusursuz Şef)":acc>=70?"A (Başarılı İstasyon)":acc>=50?"B (Geliştirilmeli)":"C (Tekrar Eğitim)";
+  $("fGrade").textContent="Akademik Not: "+gr;
+  $("fScr").textContent=st.scr+" Puan";$("fOk").textContent=st.okCount+" / "+st.qCount;$("fAcc").textContent="%"+acc;
+  $("fRnk").textContent=`Güncel Rütbe: ${$("rNam").textContent} (${st.xp} XP)`;
+  show("overScr");
+}
+
+renderMenu();
+hud();
+</script>
+</body>
+</html>

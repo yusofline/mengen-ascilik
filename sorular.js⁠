@@ -1,370 +1,78 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Mengen Aşçılık | Gastronomi Akademisi Pro</title>
-<style>
-:root{--bg:#080c12;--surf:#131b29;--surf2:#1b263b;--bdr:rgba(255,255,255,.12);--gold:#d97706;--gold2:#f59e0b;--grn:#10b981;--red:#ef4444;--blu:#38bdf8;--txt:#f8fafc;--mut:#94a3b8}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;user-select:none;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-html,body{background:var(--bg);color:var(--txt);min-height:100%;width:100%;overflow-x:hidden;overflow-y:auto}
-#app{width:100%;max-width:480px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;padding:12px 14px 36px}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.35)}50%{box-shadow:0 0 18px 2px rgba(245,158,11,.55)}}
-.hdr{background:var(--surf);border:1px solid var(--bdr);border-radius:14px;padding:11px 14px;margin-bottom:12px;display:flex;flex-direction:column;gap:8px;position:sticky;top:6px;z-index:20;box-shadow:0 8px 20px rgba(0,0,0,.5)}
-.h-top{display:flex;justify-content:space-between;align-items:center}
-.prof{display:flex;align-items:center;gap:10px}
-.emb{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(217,119,6,.05));border:1px solid var(--gold2);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--gold2);font-size:14px}
-.rmeta h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.5px}.rmeta p{font-size:11px;color:var(--gold2);font-weight:700}
-.hud-r{display:flex;align-items:center;gap:8px}
-.pill{background:#080c12;border:1px solid var(--bdr);padding:5px 10px;border-radius:8px;font-size:11.5px;font-weight:800;color:var(--gold2)}
-.dots{display:flex;gap:5px}.dot{width:10px;height:10px;border-radius:50%;background:var(--gold2);box-shadow:0 0 6px var(--gold2);transition:.25s}.dot.lost{background:#293548;box-shadow:none;transform:scale(.75)}
-.xptrk{width:100%;height:5px;background:#080c12;border-radius:9px;overflow:hidden}.xpfil{height:100%;background:linear-gradient(90deg,var(--gold),#fde047);width:5%;transition:width .4s ease}
-.scr{display:none;flex-direction:column;flex:1;gap:10px}.scr.active{display:flex;animation:fadeUp .22s ease-out}
-.hero{background:linear-gradient(135deg,#251b0e 0%,var(--surf) 100%);border:1px solid rgba(245,158,11,.45);border-radius:16px;padding:15px}
-.htag{font-size:10px;font-weight:800;letter-spacing:.8px;color:var(--gold2);margin-bottom:4px;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
-.hero h1{font-size:18.5px;font-weight:800;margin-bottom:4px}.hero p{font-size:11.5px;color:var(--mut);line-height:1.4}
-.sstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid var(--bdr);text-align:center}
-.sstrip small{display:block;font-size:9px;color:var(--mut);text-transform:uppercase;margin-bottom:2px}.sstrip b{font-size:13px;color:var(--txt)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding-bottom:20px}
-.scard{background:var(--surf);border:1px solid var(--bdr);border-radius:13px;padding:12px;color:var(--txt);text-align:left;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;transition:transform .12s;appearance:none;-webkit-appearance:none}
-.scard:active{transform:scale(.97)}.scard.full{grid-column:span 2;background:linear-gradient(90deg,#2c1f0f,var(--surf2));border-color:var(--gold2)}
-.scard.err{grid-column:span 2;background:linear-gradient(90deg,rgba(239,68,68,.18),var(--surf));border-color:rgba(239,68,68,.55)}
-.scard.spec{border-color:rgba(16,185,129,.45);background:linear-gradient(135deg,rgba(16,185,129,.1),var(--surf))}
-.stop{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;width:100%}
-.scode{font-size:9px;font-weight:800;color:var(--gold2);background:rgba(245,158,11,.15);padding:2px 6px;border-radius:4px}
-.scard.spec .scode{color:#34d399;background:rgba(16,185,129,.18)}
-.scard.err .scode{color:#fca5a5;background:rgba(239,68,68,.22)}
-.scard h3{font-size:13px;font-weight:700;margin-bottom:3px}.scard p{font-size:10.5px;color:var(--mut);line-height:1.3}
-.gnav{display:flex;justify-content:space-between;align-items:center;font-size:12px}
-.abtn{background:var(--surf);border:1px solid var(--bdr);color:var(--mut);border-radius:8px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer}
-.spk{background:rgba(245,158,11,.15);border:1px solid var(--gold2);color:var(--gold2);padding:4px 9px;border-radius:7px;font-weight:800;font-size:11px}
-.spk.hot{background:rgba(239,68,68,.22);border-color:#f87171;color:#fecaca;animation:pulse 1.5s infinite}
-.ttrk{width:100%;height:6px;background:#1e293b;border-radius:9px;overflow:hidden}.tfil{height:100%;width:100%;background:linear-gradient(90deg,var(--grn),var(--gold2));transition:width .1s linear}
-.qbox{background:var(--surf);border:1px solid var(--bdr);border-radius:15px;padding:15px;min-height:110px;display:flex;flex-direction:column;justify-content:center;position:relative}
-.qbox.hot{border-color:var(--gold2);animation:pulse 2s infinite}
-.qbox.blitz{border-color:var(--blu);background:linear-gradient(135deg,rgba(56,189,248,.12),var(--surf))}
-.qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.qtag{font-size:10px;font-weight:800;color:var(--gold2);text-transform:uppercase;letter-spacing:.5px}
-.qbox.blitz .qtag{color:var(--blu)}
-.qnum{font-size:10px;color:var(--mut);font-weight:700}
-.qtxt{font-size:14px;font-weight:600;line-height:1.45}
-.opts{display:flex;flex-direction:column;gap:8px;margin:4px 0}
-.opts.tf-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.obtn{background:var(--surf);border:1.5px solid var(--bdr);border-radius:12px;padding:12px;color:var(--txt);font-size:12.5px;font-weight:500;text-align:left;display:flex;align-items:center;gap:10px;cursor:pointer;transition:transform .1s,background .15s}
-.opts.tf-grid .obtn{flex-direction:column;justify-content:center;text-align:center;padding:20px 10px;font-size:14px;font-weight:800}
-.obtn:active{transform:scale(.98)}
-.okey{width:25px;height:25px;border-radius:7px;background:#080c12;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--gold2);flex-shrink:0}
-.obtn.ok{background:rgba(16,185,129,.2);border-color:var(--grn);color:#d1fae5}.obtn.ok .okey{background:var(--grn);color:#000;border-color:var(--grn)}
-.obtn.no{background:rgba(239,68,68,.2);border-color:var(--red);color:#fee2e2;animation:shake .35s}.obtn.no .okey{background:var(--red);color:#fff;border-color:var(--red)}
-.obtn.elim{opacity:.2;pointer-events:none}.obtn.glow{border-color:var(--gold2);box-shadow:0 0 14px rgba(245,158,11,.45)}
-.exp{background:#0f172a;border:1px solid var(--gold2);border-radius:12px;padding:11px 12px;font-size:11.5px;line-height:1.4;display:none;align-items:center;justify-content:space-between;gap:10px}.exp.show{display:flex;animation:fadeUp .2s}
-.nbtn{background:var(--gold2);color:#000;border:none;border-radius:8px;padding:10px 14px;font-weight:900;font-size:11.5px;flex-shrink:0;cursor:pointer}
-.jrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:auto;padding-top:6px}
-.jbtn{background:var(--surf);border:1px solid var(--bdr);border-radius:10px;padding:8px 3px;color:var(--txt);font-size:10.5px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}.jbtn:disabled{opacity:.28;pointer-events:none}.jbtn small{font-size:9px;color:var(--gold2)}
-.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
-.rbox{background:#080c12;border:1px solid var(--bdr);border-radius:10px;padding:10px}.rbox small{font-size:10px;color:var(--mut);display:block}.rbox b{font-size:16px;color:var(--gold2)}
-.err-list{background:#080c12;border:1px solid var(--bdr);border-radius:10px;padding:10px;text-align:left;font-size:11px;color:var(--mut);max-height:130px;overflow-y:auto;margin-bottom:10px;line-height:1.45}
-.mbtn{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:12px;padding:14px;font-size:13.5px;font-weight:800;width:100%;cursor:pointer;margin-top:8px}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e293b;border:1px solid var(--gold2);color:var(--txt);padding:10px 16px;border-radius:10px;font-size:12px;font-weight:700;z-index:99;display:none;box-shadow:0 8px 25px rgba(0,0,0,.6);text-align:center;width:90%;max-width:400px}
-</style>
-</head>
-<body>
-<div id="app">
-  <header class="hdr">
-    <div class="h-top">
-      <div class="prof"><div class="emb" id="rBdg">I</div><div class="rmeta"><h2 id="rNam">Stajyer Çırak</h2><p id="xpTxt">0 / 120 XP</p></div></div>
-      <div class="hud-r"><div class="pill">🪙 <span id="gVal">100</span></div><div class="dots" id="lBox"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
-    </div>
-    <div class="xptrk"><div class="xpfil" id="xpBar"></div></div>
-  </header>
+window.PAKETLER = window.PAKETLER || [];
 
-  <section class="scr active" id="menuScr">
-    <div class="hero">
-      <div class="htag"><span>MENGEN GASTRONOMİ AKADEMİSİ</span><span id="poolBadge">HAVUZ: YÜKLENİYOR...</span></div>
-      <h1>Şefin İstasyonu: Ustalık Sınavı</h1>
-      <p>3x Akıllı Soru Çarpanı, Kuver & Standart Reçete, Adisyon Baskınları ve Kriz Yönetimi.</p>
-      <div class="sstrip">
-        <div><small>Rekor</small><b id="bVal">0</b></div>
-        <div><small>Servis</small><b id="sVal">0</b></div>
-        <div><small>Rütbe</small><b id="rShort">I / VII</b></div>
-        <div><small>Eksik</small><b id="wCount" style="color:#f87171">0</b></div>
-      </div>
-    </div>
-    <div class="grid" id="stGrid">
-      <button type="button" class="scard full" onclick="start('all')"><div class="stop"><span class="scode">AKADEMİK FİNAL</span><span style="font-size:10px;color:var(--gold2)">BAŞLA ▶</span></div><h3>Kapsamlı Başaşçılık Sınavı</h3><p>Tüm istasyonlar, Adisyon Baskınları, Krizler ve Canlı Maliyet</p></button>
-      <button type="button" class="scard err" onclick="start('wrong')"><div class="stop"><span class="scode">TEKRAR KAMPI</span><span style="font-size:10px;color:#fca5a5">BAŞLA ▶</span></div><h3>⚠️ Hatalı Tabaklarım</h3><p id="wDesc">Yanlış yaptığın soruları çözerek sıfır hataya ulaş</p></button>
-      <button type="button" class="scard spec" onclick="start('servis')"><div class="stop"><span class="scode">UZMANLIK 01</span><span style="font-size:10px;color:#34d399">BAŞLA ▶</span></div><h3>Servis, Kuver & Reçete</h3><p>Mise en Place, Kuver (Set-up) ölçüleri ve Standart Tarifeler[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span)</p></button>
-      <button type="button" class="scard spec" onclick="start('pasta')"><div class="stop"><span class="scode">UZMANLIK 02</span><span style="font-size:10px;color:#34d399">BAŞLA ▶</span></div><h3>Patisserie & Fırıncılık</h3><p>Şu hamuru, merengler, çikolata temperleme, krema ve tartlar</p></button>
-      <button type="button" class="scard spec" onclick="start('maliyet')"><div class="stop"><span class="scode">UZMANLIK 03</span><span style="font-size:10px;color:#34d399">BAŞLA ▶</span></div><h3>Mutfak Matematiği & Cost</h3><p>6 farklı canlı hesap: Fire, Food Cost, Hidratasyon, Banket</p></button>
-      <button type="button" class="scard" onclick="start('tarih')"><div class="stop"><span class="scode">BÖLÜM 04</span><span style="font-size:10px;color:var(--gold2)">BAŞLA ▶</span></div><h3>Mutfak Tarihi & Eserler</h3><p>Hitit, Selçuklu, Osmanlı yazmaları ve yemek kitapları</p></button>
-      <button type="button" class="scard" onclick="start('mengen')"><div class="stop"><span class="scode">BÖLÜM 05</span><span style="font-size:10px;color:var(--gold2)">BAŞLA ▶</span></div><h3>Mengen & Geleneksel</h3><p>Bolu-Mengen mirası, saray mutfağı ve Anadolu kültürü</p></button>
-      <button type="button" class="scard" onclick="start('kesim')"><div class="stop"><span class="scode">BÖLÜM 06</span><span style="font-size:10px;color:var(--gold2)">BAŞLA ▶</span></div><h3>Kesim & Bıçak Sanatı</h3><p>Standart Fransız bıçak kesim ölçüleri ve aromatik tabanlar</p></button>
-      <button type="button" class="scard" onclick="start('sos')"><div class="stop"><span class="scode">BÖLÜM 07</span><span style="font-size:10px;color:var(--gold2)">BAŞLA ▶</span></div><h3>Anne Soslar & Çorbalar</h3><p>5 temel anne sos, türev soslar, emülsiyon ve bağlayıcılar</p></button>
-      <button type="button" class="scard" onclick="start('pisirme')"><div class="stop"><span class="scode">BÖLÜM 08</span><span style="font-size:10px;color:var(--gold2)">BAŞLA ▶</span></div><h3>Pişirme & Isı Tekniği</h3><p>Kuru, nemli ve karma ısı transferi, Maillard ve Sous-Vide</p></button>
-      <button type="button" class="scard" onclick="start('et')"><div class="stop"><span class="scode">BÖLÜM 09</span><span style="font-size:10px;color:var(--gold2)">BAŞLA ▶</span></div><h3>Et, Karkas & Deniz Ürünü</h3><p>Merkez pişme dereceleri, bonfile kesimleri ve balıklar</p></button>
-      <button type="button" class="scard" onclick="start('hijyen')"><div class="stop"><span class="scode">BÖLÜM 10</span><span style="font-size:10px;color:var(--gold2)">BAŞLA ▶</span></div><h3>Hijyen, HACCP & Krizler</h3><p>Doğrama tahtası renkleri, kritik sıcaklıklar ve mutfak krizleri</p></button>
-    </div>
-  </section>
+window.PAKETLER.push({
+  db: [
+    // BÖLÜM 01: SERVİS, KUVER & STANDART REÇETE (SUNUM MÜFREDATI)
+    ["servis","Mise en Place (Ön Hazırlık)","Yiyecek-içecek işletmesinin açılışıyla başlayıp kapanışına kadar devam eden genel düzen, temizlik ve hazırlık çalışmaları[span_22](start_span)[span_22](end_span)","Temel amacı servis akışının aksamadan ve kusursuz yürütülmesini sağlamaktır[span_23](start_span)[span_23](end_span)."],
+    ["servis","Kuver (Couvert / Set-up)","Müşterilerin yemek yerken ihtiyaç duydukları malzemelerin bir düzen dahilinde masalara yerleştirilmesi işlemi[span_24](start_span)[span_24](end_span)","Avrupa'da kuver açmak, Amerikan literatüründe ise set-up olarak adlandırılır[span_25](start_span)[span_25](end_span)."],
+    ["servis","Kuver Malzemeleri","Molton, masa örtüsü, kapak, peçete, tabaklar, ÇKB, bardaklar ve menaj takımından oluşan sofra kurulumu[span_26](start_span)[span_26](end_span)","Sipariş öncesinde temel servis ekipmanlarının masada hazır bulunmasını sağlar[span_27](start_span)[span_27](end_span)."],
+    ["servis","Molton","Masa örtüsünün altına serilen; örtünün kaymasını, tabak sesini önleyen ve dökülen sıvıyı emen kalın koruyucu kumaş[span_28](start_span)[span_28](end_span)","Kuver açılırken masaya ilk serilen tekstil malzemesidir[span_29](start_span)[span_29](end_span)."],
+    ["servis","Menaj Takımı","Masada konukların kullanımına sunulan tuzluk, biberlik, yağlık ve sirkelik gibi tamamlayıcı masa üstü ekipmanları[span_30](start_span)[span_30](end_span)","Tuzluk ve vazo üzerindeki işletme amblemleri kapı girişine bakmalıdır[span_31](start_span)[span_31](end_span)."],
+    ["servis","ÇKB Dizilim Kuralı","Çatal, kaşık ve bıçakların yemek sırasına göre masaya içeriden dışarıya doğru dizilmesi ve dışarıdan içeriye doğru kullanılması[span_32](start_span)[span_32](end_span)","İlk yenecek yemeğin takımı en dışta, ana yemek takımı tabağa en yakın iç kısımda yer alır[span_33](start_span)[span_33](end_span)."],
+    ["servis","Tatlı ÇKB Konumu","Tatlı çatal, kaşık ve bıçaklarının kuver tabağının üst tarafında masa kenarına paralel olarak yerleştirilmesi[span_34](start_span)[span_34](end_span)","Tatlı servisinden önce masaya yerleştirilmiş durumdadırlar[span_35](start_span)[span_35](end_span)."],
+    ["servis","Kuver 2 cm Kuralı","Kuver tabağının masa kenarına, ÇKB'nin tabağa ve ÇKB'lerin kendi aralarındaki mesafesinin 2 cm olması standardı[span_36](start_span)[span_36](end_span)","ÇKB sapları kuver tabağının alt kısmı ile aynı hizada ve masaya 90 derece dik olmalıdır[span_37](start_span)[span_37](end_span)."],
+    ["servis","Logo ve Amblem Yönü","Tabakların üzerindeki otel logosunun konukların tam karşısına, vazo ve tuzluk amblemlerinin ise kapı girişine bakması kuralı[span_38](start_span)[span_38](end_span)","Kurumsal görsel standartların korunmasını sağlar[span_39](start_span)[span_39](end_span)."],
+    ["servis","Su Bardağı Konumu","Üniversal bardağın veya su bardağının ana yemek bıçağının 2-3 cm karşısına (ucuna) gelecek şekilde yerleştirilmesi[span_40](start_span)[span_40](end_span)","Kuverde içecek bardakları sağ üst köşede konumlandırılır[span_41](start_span)[span_41](end_span)."],
+    ["servis","Kuver Maksimum Takım Sınırı","Kuver tabağının sağında en fazla 4 takım ve 4 bardak; solunda ve yukarısında ise en fazla 3'er takım bulunması kuralı[span_42](start_span)[span_42](end_span)","Masada karmaşayı önleyen uluslararası kuver standardıdır[span_43](start_span)[span_43](end_span)."],
+    ["servis","Basit Kuver","İçki servisinin olmadığı, tencere yemekleri ve ızgara/kebap sunan 1-2 yıldızlı otel ve restoranlarda uygulanan kuver[span_44](start_span)[span_44](end_span)","Standart olarak çorba kaşığı, ana yemek çatal-bıçağı ve su bardağı yer alır[span_45](start_span)[span_45](end_span)."],
+    ["servis","Geliştirilmiş Kuver","Lüks ve alakart restoranlarda basit kuvere ordövr (orta boy) çatal-bıçağı ile şarap bardakları eklenerek hazırlanan kuver[span_46](start_span)[span_46](end_span)","Uluslararası kurala göre yemeğe soğuk ordövr ile başlandığı için orta boy takım en dışa konur[span_47](start_span)[span_47](end_span)."],
+    ["servis","Alakart (A'la Carte) Servis","Menüde (yemek kartında) yer alan yemeklerin belirtilen fiyatlardan sipariş üzerine hazırlanıp servis edilmesi usulü[span_48](start_span)[span_48](end_span)","Fransızca kart usulü veya karta göre anlamına gelir[span_49](start_span)[span_49](end_span)."],
+    ["servis","Ziyafet (Banket) Kuveri","4 ve 5 yıldızlı otellerde düğün, balo ve seminer gibi etkinliklerde 3 ila 6 sıra menüye göre önceden açılan kuver[span_50](start_span)[span_50](end_span)","Menü önceden bilindiği için kuver malzemelerinin masaya yerleştirilmesi kolaydır[span_51](start_span)[span_51](end_span)."],
+    ["servis","Standart Reçete (Tarife)","Toplu beslenme servisinde kalite, porsiyon tutarlılığı ve ucuz maliyet sağlayan doğrulanmış yemek üretim formülü[span_52](start_span)[span_52](end_span)","Kim pişirirse pişirsin aynı lezzet ve porsiyon standardını garanti eder[span_53](start_span)[span_53](end_span)."],
+    ["servis","Tarife Standartlaştırma Aşamaları","Yemek tarifelerinin geliştirilmesi, tarife doğrulama (test üretimi) ve yemeğin duyusal değerlendirilmesi süreci[span_54](start_span)[span_54](end_span)","Toplu beslenme sistemlerinde maliyet ve kalite sapmalarını önler[span_55](start_span)[span_55](end_span)."],
 
-  <section class="scr" id="gameScr">
-    <div class="gnav">
-      <button type="button" class="abtn" onclick="abort()">✕ Menüye Dön</button>
-      <span class="spk" id="strTxt">Seri: x1</span>
-      <b id="scrTxt">0 Puan</b>
-    </div>
-    <div class="ttrk"><div class="tfil" id="tBar"></div></div>
-    <div class="qbox" id="qCard">
-      <div class="qhead"><span class="qtag" id="qTag">İSTASYON</span><span class="qnum" id="qNum">Tabak #1</span></div>
-      <div class="qtxt" id="qTxt"></div>
-    </div>
-    <div class="opts" id="optWrap"></div>
-    <div class="exp" id="expBar"><div id="expTxt"></div><button type="button" class="nbtn" id="nxtBtn">SIRADAKİ ▶</button></div>
-    <div class="jrow">
-      <button type="button" class="jbtn" id="j50" onclick="u50()"><span>🔪 %50 Ele</span><small>15 Kredi</small></button>
-      <button type="button" class="jbtn" id="jTm" onclick="uTm()"><span>⏱️ +12 Sn</span><small>10 Kredi</small></button>
-      <button type="button" class="jbtn" id="jSk" onclick="uSk()"><span>🔄 Pas Geç</span><small>15 Kredi</small></button>
-      <button type="button" class="jbtn" id="jHn" onclick="uHn()"><span>👨‍🍳 İpucu</span><small>25 Kredi</small></button>
-    </div>
-  </section>
+    // BÖLÜM 02: PATISSERIE & FIRINCILIK
+    ["pasta","Pâte à Choux (Şu Hamuru)","Su, tereyağı, un ve yumurtayla önce ocakta kavrulup sonra fırınlanan profiterol ve ekler hamuru","Maya içermez; su buharı basıncıyla içi boşalarak kabarır."],
+    ["pasta","İtalyan Merengi","118°C-121°C kaynar şeker şurubunun çırpılan yumurta akına sicim gibi akıtılmasıyla yapılan mereng","Pastacılıkta en stabil, pişmiş ve güvenli mereng türüdür."],
+    ["pasta","Crème Anglaise","Süt, krema, şeker ve yumurta sarısının 82°C-84°C'ye pişirildiği akışkan temel krema","Dondurma ve Bavarois tabanıdır."],
+    ["pasta","Temperleme (31°C-32°C)","Bitter çikolatanın Beta kristallerini düzenleyerek parlaklık, sertlik ve kırılganlık verme işlemi","Temperlenmeyen çikolatada yağ çiçeklenmesi (fat bloom) oluşur."],
 
-  <section class="scr" id="overScr">
-    <div class="hero" style="margin:auto 0;text-align:center;padding:18px">
-      <div class="htag" style="justify-content:center">VARDİYA DEĞERLENDİRME KARNESİ</div>
-      <h2 id="fGrade">Şefin Notu: A+</h2>
-      <div style="font-size:36px;font-weight:900;color:var(--gold2);margin:6px 0" id="fScr">0 Puan</div>
-      <div class="rgrid">
-        <div class="rbox"><small>Doğru Tabak</small><b id="fOk">0</b></div>
-        <div class="rbox"><small>Başarı Oranı</small><b id="fAcc">%0</b></div>
-      </div>
-      <div class="err-list" id="errSummary">Bu vardiyada hiç hatalı tabak çıkmadı! Kusursuz iş.</div>
-      <p id="fRnk" style="font-size:12px;color:var(--mut);margin-bottom:8px"></p>
-      <button type="button" class="mbtn" onclick="start(st.cat)">AYNI İSTASYONDA YENİ VARDİYA</button>
-      <button type="button" class="mbtn" style="background:var(--surf2);color:var(--txt);border:1px solid var(--bdr)" onclick="show('menuScr')">İSTASYON SEÇİMİNE DÖN</button>
-    </div>
-  </section>
-</div>
-<div class="toast" id="toastBox"></div>
+    // BÖLÜM 04: MUTFAK TARİHİ & ESERLER
+    ["tarih","Kitabü't-Tabih (15. Yüzyıl)","Hekim Şirvani'nin Bağdadi'den çevirip 80'den fazla tarif eklediği bilinen ilk Osmanlı yemek yazması","Orta Asya Türk-Selçuklu çizgisini yansıtır."],
+    ["tarih","Melceü't-Tabbahin (1844)","Mehmet Kamil'in yazdığı, 273 tarifli basılı ilk Türkçe yemek kitabı","Anlamı 'Aşçıların Sığınağı'dır."],
+    ["tarih","Ev Kadını (1883)","Ayşe Fahriye tarafından hanımlara yemek teknikleri ve sofra adabını öğretmek için yazılan 802 tarifli eser","Piruhi ve Çerkez tavuğu gibi önemli tarifleri içerir."],
 
-<script>
-const FALLBACK_DB=[
-  ["servis","Mise en Place","Yiyecek-içecek işletmesinin açılışından kapanışına kadar devam eden genel düzen, temizlik ve ön hazırlık çalışmaları[span_9](start_span)[span_9](end_span)","Temel amacı servis akışının aksamadan kusursuz yürütülmesidir[span_10](start_span)[span_10](end_span)."],
-  ["servis","Kuver (Set-up)","Müşterilerin yemek yerken ihtiyaç duydukları malzemelerin bir düzen dahilinde masalara yerleştirilmesi[span_11](start_span)[span_11](end_span)","Avrupa'da kuver açmak, Amerikan literatüründe set-up olarak geçer[span_12](start_span)[span_12](end_span)."],
-  ["pasta","Pâte à Choux (Şu Hamuru)","Su, tereyağı, un ve yumurtayla önce ocakta kavrulup sonra fırınlanan profiterol/ekler hamuru","Maya içermez; su buharı basıncıyla içi boşalarak kabarır."],
-  ["tarih","Melceü't-Tabbahin (1844)","Mehmet Kamil'in yazdığı, 273 tarifli basılı ilk Türkçe yemek kitabı","Anlamı 'Aşçıların Sığınağı'dır."],
-  ["mengen","Mengen Pilavı","Kuşbaşı et, mantar, ceviz içi, domates ve dereotu ile pişirilen Mengen imza pilavı","Ceviz ve dereotu karakteristik imzasıdır."],
-  ["kesim","Brunoise","1x1x1 mm ile 3x3x3 mm ölçülerinde çok ince küp sebze doğrama standardı","Julienne şeritlerin küp doğranmasıyla elde edilir."],
-  ["sos","Béchamel Sos","Beyaz Roux üzerine sıcak süt eklenip muskatla aromalandırılan temel anne sos","Mornay sosun ve gratenlerin temelidir."],
-  ["pisirme","Maillard Reaksiyonu","140°C üzerinde amino asitler ve şekerlerin tepkimeye girerek lezzet kabuğu oluşturması","Mühürlenen etin kahverengi kabuk lezzetini verir."],
-  ["et","55°C - 57°C (Medium Rare)","Orta-Az pişmiş dana bonfilenin ideal merkez sıcaklığı","Merkezi sıcak kırmızı ve maksimum sululuktadır."],
-  ["hijyen","Sarı Doğrama Tahtası","HACCP standartlarında Çiğ Kümes Hayvanları için kullanılan doğrama tahtası rengi","Salmonella çapraz bulaşmasını engeller."]
-];
+    // BÖLÜM 05: MENGEN & GELENEKSEL
+    ["mengen","Halantiye Bulamacı","Hitit tabletlerinde sulu sütten yapıldığı belirtilen kraliyet yemeği","Hitit metinlerinde ayrıca 180'e yakın un mamulü adı geçer."],
+    ["mengen","Mengen Pilavı","Kuşbaşı et, mantar, ceviz içi, domates ve dereotu ile pişirilen Mengen imza pilavı","Ceviz ve dereotu karakteristik imzasıdır."],
 
-const RANKS=[[0,"I","Stajyer Çırak"],[120,"II","Commis (Komi)"],[300,"III","Demi Chef"],[600,"IV","Chef de Partie"],[1000,"V","Sous Chef"],[1600,"VI","Executive Chef"],[2500,"VII","Mengen Başaşçısı"]];
-const getS=(k,d)=>{try{let v=localStorage.getItem(k);return v!==null?JSON.parse(v):d}catch(e){return d}};
-const setS=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
-let actx=null;
-function sfx(f,t,d){try{if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();if(actx.state==="suspended")actx.resume();let o=actx.createOscillator(),g=actx.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.07,actx.currentTime);g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+d);o.connect(g);g.connect(actx.destination);o.start();o.stop(actx.currentTime+d)}catch(e){}}
-const okSfx=()=>{sfx(523,"sine",.09);setTimeout(()=>sfx(659,"sine",.16),75)},noSfx=()=>{sfx(196,"triangle",.18);setTimeout(()=>sfx(146,"sawtooth",.22),95)},tapSfx=()=>sfx(440,"sine",.04);
-let toastTm=null;
-function msg(txt){let t=document.getElementById("toastBox");t.textContent=txt;t.style.display="block";clearTimeout(toastTm);toastTm=setTimeout(()=>t.style.display="none",2800);}
+    // BÖLÜM 06: KESİM & BIÇAK SANATI
+    ["kesim","Brunoise","1x1x1 mm ile 3x3x3 mm ölçülerinde çok ince küp sebze doğrama standardı","Julienne şeritlerin küp doğranmasıyla elde edilir."],
+    ["kesim","Mirepoix","2 kısım soğan, 1 kısım havuç ve 1 kısım kereviz sapından oluşan temel aromatik sebze karışımı","Stok ve temel sosların lezzet omurgasıdır."],
 
-const $=id=>document.getElementById(id);
-function shuf(a){let b=[...a];for(let i=b.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
-const cleanTxt=str=>typeof str==="string"?str.replace(/\[cite:\s*[\d,\s]+\]/g,"").trim():str;
-function uniqOpts(correct,pool){
-  let set=new Set([correct]);
-  for(let x of shuf(pool)){if(set.size>=4)break;if(x&&x!==correct)set.add(x);}
-  let fall=["Standart Dışı Uygulama","Hatalı Mutfak Prosedürü","Geleneksel Olmayan Yöntem","Kritik Limit İhlali"];
-  for(let f of fall){if(set.size>=4)break;set.add(f);}
-  return shuf([...set]);
-}
+    // BÖLÜM 07: ANNE SOSLAR
+    ["sos","Béchamel Sos","Beyaz Roux üzerine sıcak süt eklenip muskat ceviziyle aromalandırılan temel anne sos","Mornay sosun ve gratenlerin temelidir."],
+    ["sos","Hollandaise Sos","Yumurta sarısı, saf tereyağı ve limon suyuyla benmaride yapılan sıcak emülsiyon anne sos","65°C üzerinde yumurta pişip sos kesilebilir."],
 
-let M_DB=[],M_AUD=[],M_CRISIS=[],M_TF=[];
-function mergeData(){
-  M_DB=[];M_AUD=[];M_CRISIS=[];M_TF=[];
-  const add=(arr,target)=>{if(Array.isArray(arr))target.push(...arr);};
-  if(typeof DB!=="undefined")add(DB,M_DB);
-  if(typeof DB_YENI!=="undefined")add(DB_YENI,M_DB);
-  if(typeof AUD!=="undefined")add(AUD,M_AUD);
-  if(typeof AUD_YENI!=="undefined")add(AUD_YENI,M_AUD);
-  if(typeof CRISIS!=="undefined")add(CRISIS,M_CRISIS);
-  if(typeof CRISIS_YENI!=="undefined")add(CRISIS_YENI,M_CRISIS);
-  if(typeof TF!=="undefined")add(TF,M_TF);
-  if(typeof TF_YENI!=="undefined")add(TF_YENI,M_TF);
-  if(Array.isArray(window.PAKETLER)){
-    window.PAKETLER.forEach(p=>{
-      if(p.db)add(p.db,M_DB);
-      if(p.aud)add(p.aud,M_AUD);
-      if(p.crisis)add(p.crisis,M_CRISIS);
-      if(p.tf)add(p.tf,M_TF);
-    });
-  }
-  let usedFallback=false;
-  if(!M_DB.length){M_DB=[...FALLBACK_DB];usedFallback=true;}
-  let seen=new Set();
-  M_DB=M_DB.filter(x=>{if(!Array.isArray(x)||x.length<4)return false;let k=x[0]+":"+x[1];if(seen.has(k))return false;seen.add(k);return true;});
-  let total=(M_DB.length*3)+M_AUD.length+M_CRISIS.length+M_TF.length+36;
-  if($("poolBadge"))$("poolBadge").textContent=usedFallback?`YEDEK HAVUZ (${total} SORU)`:`AKTİF HAVUZ: ${total}+ SORU`;
-}
+    // BÖLÜM 08: PİŞİRME TEKNİKLERİ
+    ["pisirme","Breze (Braising)","Büyük parça etlerin önce mühürlenip sonra az sıvıyla kapalı kapta ağır ateşte pişirilmesi","Bağ dokusunu jelatine dönüştüren karma pişirme yöntemidir."],
+    ["pisirme","Maillard Reaksiyonu","140°C üzerinde amino asitler ve şekerlerin tepkimeye girerek lezzet kabuğu oluşturması","Mühürlenen etin kahverengi kabuk lezzetini verir."],
 
-let st={xp:getS("mg_xp",0),gold:getS("mg_gold",100),best:getS("mg_best",0),solv:getS("mg_solved",0),wrongs:getS("mg_wrongs",[]),sessionErrs:[],cat:"all",scr:0,cmb:1,liv:3,deck:[],q:null,tm:null,left:22,maxT:22,lock:0,qCount:0,okCount:0};
+    // BÖLÜM 09: ET & DENİZ ÜRÜNÜ
+    ["et","55°C - 57°C (Medium Rare)","Orta-Az pişmiş dana bonfilenin ideal merkez sıcaklığı","Merkezi sıcak kırmızı ve maksimum sululuktadır."],
 
-function hud(){
-  setS("mg_xp",st.xp);setS("mg_gold",st.gold);setS("mg_best",st.best);setS("mg_solved",st.solv);setS("mg_wrongs",st.wrongs);
-  let cur=RANKS[0],nxt=RANKS[1];
-  for(let i=0;i<RANKS.length;i++)if(st.xp>=RANKS[i][0]){cur=RANKS[i];nxt=RANKS[i+1]||[st.xp+500];}
-  $("rBdg").textContent=cur[1];$("rNam").textContent=cur[2];$("xpTxt").textContent=`${st.xp} / ${nxt[0]} XP`;
-  $("rShort").textContent=cur[1]+" / VII";$("wCount").textContent=st.wrongs.length;
-  if($("wDesc"))$("wDesc").textContent=`Kayıtlı Hatalı Tabak: ${st.wrongs.length} adet (Doğru çözünce silinir)`;
-  $("xpBar").style.width=Math.max(5,Math.min(100,Math.round((st.xp-cur[0])/(nxt[0]-cur[0])*100)))+"%";
-  $("gVal").textContent=st.gold;$("bVal").textContent=st.best;$("sVal").textContent=st.solv;
-  $("lBox").innerHTML=[0,1,2].map(i=>`<div class="dot ${i>=st.liv?'lost':''}"></div>`).join("");
-}
+    // BÖLÜM 10: HİJYEN & HACCP
+    ["hijyen","Sarı Doğrama Tahtası","HACCP standartlarında Çiğ Kümes Hayvanları için kullanılan doğrama tahtası rengi","Salmonella çapraz bulaşmasını engeller."],
+    ["hijyen","4°C - 60°C (Tehlikeli Bölge)","Gıda güvenliğinde bakterilerin her 20 dakikada ikiye katlandığı kritik sıcaklık aralığı","Potansiyel riskli gıdalar bu aralıkta 2 saatten fazla tutulamaz."]
+  ],
 
-function genMath(){
-  let m=Math.floor(Math.random()*6);
-  if(m===0){
-    let it=["Atlantik Somonu","Dana Bonfile","Kalkan Balığı","Kuzu Sırt"][Math.floor(Math.random()*4)],b=[10,20,40][Math.floor(Math.random()*3)],f=[15,20,25,30][Math.floor(Math.random()*4)],n=Math.round(b*(100-f)/100);
-    return {t:"MALİYET • FİRE HESABI",q:`Brüt ${b} kg ${it} temizlenince ${n} kg net porsiyonluk ürün kalıyor. Fire oranı yüzde kaçtır?`,a:`%${f}`,o:uniqOpts(`%${f}`,[`%${f+5}`,`%${f-5}`,`%${f+10}`,`%${100-f}`]),n:`Fire = (${b}-${n})/${b} = %${f}. Net Verim (Yield) %${100-f}'dir.`};
-  }else if(m===1){
-    let pairs=[[60,25,240],[75,25,300],[90,30,300],[120,30,400],[150,25,600]][Math.floor(Math.random()*5)],c=pairs[0],fc=pairs[1],p=pairs[2];
-    return {t:"MALİYET • MENÜ FİYATLAMA",q:`Reçete maliyeti ${c} TL olan tabak için hedef Food Cost %${fc} ise vergisiz satış fiyatı kaç TL olmalıdır?`,a:`${p} TL`,o:uniqOpts(`${p} TL`,[`${p+50} TL`,`${p-40} TL`,`${p+100} TL`]),n:`Satış Fiyatı = Maliyet / Food Cost (${c} / 0.${fc} = ${p} TL).`};
-  }else if(m===2){
-    let fl=[1000,2000,3000][Math.floor(Math.random()*3)],h=[60,65,70][Math.floor(Math.random()*3)],w=Math.round(fl*h/100);
-    return {t:"MALİYET • FIRINCI YÜZDESİ",q:`%${h} hidratasyonlu ekşi maya ekmek reçetesinde ${fl} g un için kaç gram su gerekir?`,a:`${w} g`,o:uniqOpts(`${w} g`,[`${w+150} g`,`${w-150} g`,`${w+300} g`]),n:`Fırıncı yüzdesinde un %100'dür: ${fl} x %${h} = ${w} g su.`};
-  }else if(m===3){
-    let g=[40,60,80,100][Math.floor(Math.random()*4)],net=Math.round(g*.2),brut=Math.round(net/.8);
-    return {t:"MALİYET • BANKET SİPARİŞİ",q:`${g} kişilik bankette kişi başı 200 g net bonfile sunulacaktır. Fire %20 (Verim %80) ise kaç kg brüt et sipariş edilmelidir?`,a:`${brut} kg`,o:uniqOpts(`${brut} kg`,[`${brut+3} kg`,`${brut-2} kg`,`${brut+6} kg`]),n:`Net ihtiyaç ${net} kg. Brüt Sipariş = ${net} / 0.80 = ${brut} kg.`};
-  }else if(m===4){
-    let mult=[5,6,8][Math.floor(Math.random()*3)],baseG=[120,150,200][Math.floor(Math.random()*3)],tot=baseG*mult;
-    return {t:"MALİYET • REÇETE ÖLÇEKLENDİRME",q:`4 porsiyonluk standart reçetede ${baseG} g tereyağı kullanılıyorsa, ${4*mult} porsiyonluk üretim için kaç gram tereyağı gerekir?`,a:`${tot} g`,o:uniqOpts(`${tot} g`,[`${tot+200} g`,`${tot-150} g`,`${tot+350} g`]),n:`Dönüşüm Çarpanı = ${4*mult} / 4 = ${mult}. İhtiyaç: ${baseG} x ${mult} = ${tot} g.`};
-  }else{
-    let sell=[200,300,400][Math.floor(Math.random()*3)],pct=[25,30,35][Math.floor(Math.random()*3)],cost=Math.round((sell*pct)/100);
-    return {t:"MALİYET • FOOD COST YÜZDESİ",q:`Vergisiz satış fiyatı ${sell} TL olan bir tabağın reçete maliyeti ${cost} TL ise gerçekleşen Food Cost oranı yüzde kaçtır?`,a:`%${pct}`,o:uniqOpts(`%${pct}`,[`%${pct+5}`,`%${pct-5}`,`%${pct+10}`]),n:`Food Cost % = (Maliyet / Satış) x 100 = (${cost} / ${sell}) x 100 = %${pct}.`};
-  }
-}
+  aud: [
+    ["servis","Kuver (Sofra Takımı) Malzemeleri",["Molton, Masa Örtüsü ve Kapak[span_56](start_span)[span_56](end_span)","Çatal, Kaşık, Bıçak ve Bardaklar[span_57](start_span)[span_57](end_span)","Peçete ve Menaj Takımı[span_58](start_span)[span_58](end_span)"],"Adisyon Rulosu ve POS Cihazı","Kuver; örtü, peçete, tabak, ÇKB, bardak ve menajdan oluşur[span_59](start_span)[span_59](end_span)."],
+    ["servis","Standart Basit Kuver Düzeni",["Çorba Kaşığı[span_60](start_span)[span_60](end_span)","Ana Yemek Çatalı ve Bıçağı[span_61](start_span)[span_61](end_span)","Su Bardağı[span_62](start_span)[span_62](end_span)"],"Şampanya Kadehi ve İstiridye Çatalı","Basit kuver içkisiz 3 sıra yemek düzenine göredir[span_63](start_span)[span_63](end_span)."],
+    ["sos","Orijinal Fettuccine Alfredo",["Tereyağı","Parmigiano-Reggiano","Makarna Haşlama Suyu"],"Sarımsak, Tavuk Suyu ve Un","Geleneksel Alfredo sadece tereyağı ve parmesan emülsiyonudur."],
+    ["mengen","Geleneksel Mengen Pilavı",["Ceviz İçi","Kültür/Dağ Mantarı","Dereotu ve Kuşbaşı Et"],"Krema, Köri ve Konserve Mısır","Mengen pilavında krema veya köri yer almaz."]
+  ],
 
-function build(cat){
-  mergeData();
-  if(cat==="wrong")return shuf(st.wrongs.map(w=>({...w,o:w.tf?["DOĞRU","YANLIŞ"]:shuf(w.o)})));
-  let d=[];
-  if(cat==="maliyet"){for(let i=0;i<30;i++)d.push(genMath());return shuf(d);}
-  let list=cat==="all"?M_DB:M_DB.filter(x=>x[0]===cat);
-  if(!list.length)list=M_DB;
-  list.forEach((k,idx)=>{
-    let k1=cleanTxt(k[1]),k2=cleanTxt(k[2]),k3=cleanTxt(k[3]);
-    let same=M_DB.filter(x=>x[0]===k[0]&&x[1]!==k[1]);
-    if(same.length<3)same=M_DB.filter(x=>x[1]!==k[1]);
-    d.push({t:k[0].toUpperCase()+" • TERMİNOLOJİ",q:`"${k2}" olarak tanımlanan kavram, eser veya standart hangisidir?[span_13](start_span)[span_13](end_span)`,a:k1,o:uniqOpts(k1,same.map(x=>cleanTxt(x[1]))),n:k3});
-    d.push({t:k[0].toUpperCase()+" • STANDART",q:`Mutfak ve servis literatüründe "${k1}" ifadesinin doğru karşılığı hangisidir?[span_14](start_span)[span_14](end_span)`,a:k2,o:uniqOpts(k2,same.map(x=>cleanTxt(x[2]))),n:k3});
-    if(idx%2===0){
-      d.push({t:"⚡ ADİSYON BASKINI • 12 SN HIZ TURU",q:`"${k1}", ${k2.charAt(0).toLowerCase()+k2.slice(1)} olarak tanımlanır.[span_15](start_span)[span_15](end_span)`,a:"DOĞRU",o:["DOĞRU","YANLIŞ"],n:`Doğru! ${k1}: ${k3}`,tf:1});
-    }else if(same.length>0){
-      let fake=same[idx%same.length];
-      d.push({t:"⚡ ADİSYON BASKINI • 12 SN HIZ TURU",q:`"${k1}", ${cleanTxt(fake[2]).charAt(0).toLowerCase()+cleanTxt(fake[2]).slice(1)} olarak tanımlanır.[span_16](start_span)[span_16](end_span)`,a:"YANLIŞ",o:["DOĞRU","YANLIŞ"],n:`Yanlış! Bu tanım "${cleanTxt(fake[1])}" kavramına aittir. ${k1}: ${k2}.`,tf:1});
-    }
-  });
-  (cat==="all"?M_AUD:M_AUD.filter(a=>a[0]===cat)).forEach(au=>{
-    d.push({t:"REÇETE & KUVER DENETİMİ",q:`"${cleanTxt(au[1])}" kapsamında aşağıdakilerden hangisi kesinlikle YER ALMAZ?[span_17](start_span)[span_17](end_span)`,a:cleanTxt(au[3]),o:uniqOpts(cleanTxt(au[3]),au[2].map(cleanTxt)),n:cleanTxt(au[4])});
-  });
-  (cat==="all"?M_CRISIS:M_CRISIS.filter(c=>c[0]===cat)).forEach(cr=>{
-    d.push({t:"ŞEFİN KARARI • KRİZ YÖNETİMİ",q:cleanTxt(cr[1]),a:cleanTxt(cr[2]),o:uniqOpts(cleanTxt(cr[2]),[cleanTxt(cr[3]),cleanTxt(cr[4]),cleanTxt(cr[5])]),n:cleanTxt(cr[6])});
-  });
-  (cat==="all"?M_TF:M_TF.filter(x=>x[0]===cat)).forEach(tf=>{
-    d.push({t:"⚡ ADİSYON BASKINI • 12 SN HIZ TURU",q:cleanTxt(tf[1]),a:tf[2],o:["DOĞRU","YANLIŞ"],n:cleanTxt(tf[3]),tf:1});
-  });
-  if(cat==="all")for(let i=0;i<18;i++)d.push(genMath());
-  return shuf(d);
-}
+  crisis: [
+    ["servis","Geliştirilmiş kuver açılmış alakart bir masada konuk şarap yerine rakı sipariş etti. Ne yapmalısın?[span_64](start_span)[span_64](end_span)","Masadaki beyaz şarap bardağını kaldırıp yerine rakı bardağı yerleştirmek[span_65](start_span)[span_65](end_span)","Su bardağını masadan tamamen almak","Rakıyı şarap kadehinde servis etmek","Masadaki tüm bardakları toplamak","Rakı tercih edildiğinde beyaz şarap bardağı kaldırılarak yerine rakı bardağı konur[span_66](start_span)[span_66](end_span)."],
+    ["servis","Servis yoğunluğunda temiz bardaklar bulaşık makinesinde kaldı ve konuk içecek bekliyor. Ön hazırlık kuralı nedir?[span_67](start_span)[span_67](end_span)","Asla 'Bardaklar makinede, çıkınca getireceğim' denmemeli; servis öncesi yedekli Mise en Place ile bu kriz önlenmelidir[span_68](start_span)[span_68](end_span)","Konuğa makinenin bitmesini beklemesini söylemek","İçeceği çorba kasesinde sunmak","Konuğu başka masaya kaldırmak","Mise en Place eksikliği konuğa yansıtılmaz; ön hazırlık kusursuz planlanmalıdır[span_69](start_span)[span_69](end_span)."],
+    ["sos","Servis sırasında Hollandaise sosun sıcaklığı 68°C'ye çıktı ve sos kesildi. Şef olarak nasıl kurtarırsın?","Ayrı bir kapta 1 kaşık ılık su/yumurta sarısı çırpıp kesilen sosu yavaşça yedirmek","Sosu yüksek ateşte kaynatmak","İçine soğuk süt dökmek","Un ekleyip kavurmak","Emülsiyon bozulduğunda yeni bir baz üzerine yavaşça çırparak geri bağlanır."]
+  ],
 
-function show(id){document.querySelectorAll(".scr").forEach(s=>s.classList.remove("active"));$(id).classList.add("active");window.scrollTo(0,0);hud();}
-function start(c){
-  tapSfx();
-  if(c==="wrong"&&!st.wrongs.length){msg("Şu an hatalı tabağın yok Şef! Yanlış yaptığın sorular otomatik buraya eklenir.");return;}
-  let deck=build(c);
-  if(!deck.length){msg("Bu istasyonda henüz soru bulunamadı!");return;}
-  clearInterval(st.tm);st.cat=c;st.scr=0;st.cmb=1;st.liv=3;st.qCount=0;st.okCount=0;st.sessionErrs=[];st.deck=deck;show("gameScr");nextQ();
-}
-function abort(){tapSfx();clearInterval(st.tm);show("menuScr");}
-function jSync(){$("j50").disabled=st.lock\vert{}\vert{}st.gold<15\vert{}\vert{}(st.q&&st.q.tf===1);$("jTm").disabled=st.lock||st.gold<10;$("jSk").disabled=st.lock\vert{}\vert{}st.gold<15;$("jHn").disabled=st.lock||st.gold<25;}
-
-function nextQ(){
-  clearInterval(st.tm);
-  if(st.liv<=0)return end();
-  if(!st.deck.length){
-    if(st.cat==="wrong"){
-      if(!st.wrongs.length){msg("Tebrikler Şef! Tüm hatalı tabakları temizledin!");return end();}
-      st.deck=build("wrong");
-    }else{
-      st.deck=build(st.cat);
-    }
-  }
-  st.lock=0;st.qCount++;st.q=st.deck.pop();$("expBar").classList.remove("show");
-  let isTf=st.q.tf===1;
-  $("strTxt").textContent=st.cmb>=3?`🔥 Ateş Hattı: x${st.cmb}`:`Seri: x${st.cmb}`;
-  $("strTxt").classList.toggle("hot",st.cmb>=3);
-  $("qCard").className="qbox"+(isTf?" blitz":(st.cmb>=3?" hot":""));
-  $("scrTxt").textContent=st.scr+" Puan";$("qTag").textContent=st.q.t;$("qNum").textContent="Tabak #"+st.qCount;$("qTxt").textContent=st.q.q;
-  $("optWrap").className="opts"+(isTf?" tf-grid":"");
-  $("optWrap").innerHTML="";
-  let keys=isTf?["✓","✕"]:["A","B","C","D"];
-  st.q.o.forEach((opt,i)=>{
-    let b=document.createElement("button");b.type="button";b.className="obtn";b.dataset.v=opt;
-    b.innerHTML=`<span class="okey">${keys[i]||"•"}</span><span>${opt}</span>`;
-    b.onclick=()=>ans(b,opt);$("optWrap").appendChild(b);
-  });
-  jSync();st.maxT=isTf?12:22;st.left=st.maxT;$("tBar").style.width="100%";
-  st.tm=setInterval(()=>{st.left-=.1;$("tBar").style.width=Math.max(0,st.left/st.maxT*100)+"%";if(st.left<=0){clearInterval(st.tm);ans(null,"__TO__");}},100);
-}
-
-function ans(btn,val){
-  if(st.lock)return;st.lock=1;clearInterval(st.tm);jSync();
-  document.querySelectorAll(".obtn").forEach(b=>{if(b.dataset.v===st.q.a)b.classList.add("ok");});
-  if(val===st.q.a){
-    okSfx();let spd=Math.max(0,Math.floor(st.left/3)),pt=(20*st.cmb)+spd;
-    st.scr+=pt;st.xp+=16;st.gold+=6;st.cmb=Math.min(5,st.cmb+1);st.solv++;st.okCount++;
-    if(st.scr>st.best)st.best=st.scr;
-    if(st.cat==="wrong")st.wrongs=st.wrongs.filter(w=>w.q!==st.q.q);
-    $("expTxt").innerHTML=`<b style="color:var(--grn)">✓ Kusursuz Servis (+${pt} Puan | Hız +${spd})[span_18](start_span)[span_18](end_span)</b><br>${st.q.n}`;
-  }else{
-    noSfx();if(btn)btn.classList.add("no");st.liv--;st.cmb=1;
-    st.sessionErrs.push(`• <b>${st.q.a}:</b> ${st.q.n}`);
-    if(!st.wrongs.some(w=>w.q===st.q.q))st.wrongs.push({t:st.q.t,q:st.q.q,a:st.q.a,o:st.q.o,n:st.q.n,tf:st.q.tf||0});
-    $("expTxt").innerHTML=`<b style="color:var(--red)">${val==="__TO__"?"⏱ Süre Doldu!":"✕ Hatalı Tabak!"} Doğrusu: ${st.q.a}</b><br>${st.q.n}`;
-  }
-  hud();$("scrTxt").textContent=st.scr+" Puan";
-  let finishWrong=(st.cat==="wrong"&&!st.wrongs.length);
-  $("nxtBtn").textContent=(st.liv<=0||finishWrong)?"KARNEYİ GÖR":"SIRADAKİ ▶";
-  $("nxtBtn").onclick=()=>{tapSfx();(st.liv<=0||finishWrong)?end():nextQ();};
-  $("expBar").classList.add("show");
-}
-
-function u50(){if(st.lock||st.gold<15||(st.q&&st.q.tf===1))return;tapSfx();st.gold-=15;hud();shuf([...document.querySelectorAll(".obtn")].filter(b=>b.dataset.v!==st.q.a&&!b.classList.contains("elim"))).slice(0,2).forEach(b=>b.classList.add("elim"));$("j50").disabled=true;}
-function uTm(){if(st.lock||st.gold<10)return;tapSfx();st.gold-=10;hud();st.left=Math.min(st.maxT,st.left+12);$("jTm").disabled=true;}
-function uSk(){if(st.lock||st.gold<15)return;tapSfx();st.gold-=15;hud();if(st.cat==="wrong"&&st.q)st.deck.unshift(st.q);st.qCount--;nextQ();}
-function uHn(){if(st.lock||st.gold<25)return;tapSfx();st.gold-=25;hud();document.querySelectorAll(".obtn").forEach(b=>{if(b.dataset.v===st.q.a)b.classList.add("glow");});$("jHn").disabled=true;}
-
-function end(){
-  clearInterval(st.tm);
-  let acc=st.qCount?Math.round((st.okCount/st.qCount)*100):0;
-  let gr=acc>=85?"A+ (Kusursuz Şef)":acc>=70?"A (Başarılı İstasyon)":acc>=50?"B (Geliştirilmeli)":"C (Tekrar Eğitim)";
-  $("fGrade").textContent="Akademik Not: "+gr;
-  $("fScr").textContent=st.scr+" Puan";$("fOk").textContent=st.okCount+" / "+st.qCount;$("fAcc").textContent="%"+acc;
-  $("errSummary").innerHTML=st.sessionErrs.length?`<b>Bu Vardiyada Kaçırdığın Noktalar:</b><br>`+st.sessionErrs.join("<br>"):"Bu vardiyada hiç hatalı tabak çıkmadı! Kusursuz iş Şef.";
-  $("fRnk").textContent=`Güncel Rütbe: ${$("rNam").textContent} (${st.xp} XP)`;
-  show("overScr");
-}
-
-(function loadQuestions(){
-  mergeData();hud();
-  let s=document.createElement("script");
-  s.src="sorular.js?v="+Date.now();
-  s.onload=()=>{mergeData();hud();};
-  s.onerror=()=>{mergeData();hud();};
-  document.head.appendChild(s);
-})();
-</script>
-</body>
-</html>
+  tf: [
+    ["servis","Avrupa'da 'kuver açmak' olarak bilinen işlem Amerikan literatüründe 'set-up' olarak adlandırılır.[span_70](start_span)[span_70](end_span)","DOĞRU","Her iki terim de servis öncesi masa hazırlığını ifade eder[span_71](start_span)[span_71](end_span)."],
+    ["servis","Kuver açarken çatal, kaşık ve bıçaklar masaya dışarıdan içeriye doğru dizilir.[span_72](start_span)[span_72](end_span)","YANLIŞ","ÇKB masaya içeriden dışarıya doğru dizilir, dışarıdan içeriye doğru kullanılır[span_73](start_span)[span_73](end_span)."],
+    ["servis","Kuver tabağının sağında en fazla 4 takım ve en fazla 4 bardak yer almalıdır.[span_74](start_span)[span_74](end_span)","DOĞRU","Solunda ve yukarısında ise en fazla 3'er takım yer alır[span_75](start_span)[span_75](end_span)."],
+    ["hijyen","HACCP sisteminde çiğ kümes hayvanları Mavi doğrama tahtasında kesilir.","YANLIŞ","Mavi tahta çiğ balık içindir; çiğ kümes hayvanları SARI tahtada kesilir."]
+  ]
+});
